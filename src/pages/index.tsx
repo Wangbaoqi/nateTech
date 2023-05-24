@@ -90,10 +90,10 @@ function HeroBanner() {
           />
         </Heading>
         <div className={styles.indexCtas}>
-          <Link className="button button--primary" to="/docs/computer-fundamentals/intro">
+          <Link className="button button--primary" to="/">
             <Translate>Get Started</Translate>
           </Link>
-          <Link className="button button--info" to="https://www.wangbaoqi.tech/">
+          <Link className="button button--info" to="https://wangbaoqi.tech">
             <Translate>Blog</Translate>
           </Link>
           <span className={styles.indexCtasGitHubButtonWrapper}>

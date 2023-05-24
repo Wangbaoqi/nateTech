@@ -28,8 +28,8 @@ const config = {
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: 'zh-Hans',
+    locales: ['zh-Hans'],
   },
 
   presets: [
@@ -94,13 +94,13 @@ const config = {
             position: 'left',
             label: '工程化',
           },
-          {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'Tutorial',
-          },
-          {href: 'https://www.wangbaoqi.tech/', label: 'Blog', position: 'left'},
+          // {
+          //   type: 'docSidebar',
+          //   sidebarId: 'tutorialSidebar',
+          //   position: 'left',
+          //   label: 'Tutorial',
+          // },
+          {href: 'https://wangbaoqi.tech', label: 'Blog', position: 'left'},
           {
             href: 'https://github.com/wangbaoqi/nateTech',
             label: 'GitHub',
@@ -116,7 +116,7 @@ const config = {
             items: [
               {
                 label: '计算机基础',
-                to: '/docs/computer-fundamentals/intro.md',
+                to: '/',
               },
             ],
           },
@@ -142,11 +142,11 @@ const config = {
             items: [
               {
                 label: 'Blog',
-                href: '/https://www.wangbaoqi.tech/',
+                href: 'https://wangbaoqi.tech',
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/wangbaoqi/',
+                href: 'https://github.com/wangbaoqi',
               },
             ],
           },
