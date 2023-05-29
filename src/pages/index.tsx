@@ -10,24 +10,6 @@ import Heading from '@theme/Heading';
 
 import styles from './index.module.css';
 
-function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
-  return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <h1 className="hero__title">{siteConfig.title}</h1>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
-          </Link>
-        </div>
-      </div>
-    </header>
-  );
-}
 
 function TopBanner() {
   
@@ -71,9 +53,9 @@ function HeroBanner() {
           <img
             alt={translate({message: 'Docusaurus with Keytar'})}
             className={styles.heroLogo}
-            src={useBaseUrl('/img/docusaurus_keytar.svg')}
-            width="200"
-            height="200"
+            src={useBaseUrl('/img/me.webp')}
+            width="250"
+            height="250"
           />
           <span
             className={styles.heroTitleTextHtml}
@@ -90,7 +72,7 @@ function HeroBanner() {
           />
         </Heading>
         <div className={styles.indexCtas}>
-          <Link className="button button--primary" to="/">
+          <Link className="button button--primary" to="/docs/computer-fundamentals/intro">
             <Translate>Get Started</Translate>
           </Link>
           <Link className="button button--info" to="https://wangbaoqi.tech">

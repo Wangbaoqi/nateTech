@@ -8,10 +8,10 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'NateTech Stack',
   tagline: 'Dinosaurs are cool',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.webp',
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'https://docs.wangbaoqi.tech',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -52,22 +52,26 @@ const config = {
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve('./src/css/custom.scss'),
         },
       }),
     ],
   ],
-
+  plugins: [
+    'docusaurus-plugin-sass'
+  ],
+  themes: ['@docusaurus/theme-live-codeblock'],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      image: 'img/docusaurus-social-card.jpg',
+      image: 'img/logo.png',
       navbar: {
         title: 'NateTech',
+        style: 'dark',
         logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          alt: 'nate Logo',
+          src: 'img/logo.png',
         },
         items: [
           {
@@ -94,16 +98,12 @@ const config = {
             position: 'left',
             label: '工程化',
           },
-          // {
-          //   type: 'docSidebar',
-          //   sidebarId: 'tutorialSidebar',
-          //   position: 'left',
-          //   label: 'Tutorial',
-          // },
-          {href: 'https://wangbaoqi.tech', label: 'Blog', position: 'left'},
+         
+          { to: 'https://wangbaoqi.tech', label: 'Blog', position: 'left' },
           {
             href: 'https://github.com/wangbaoqi/nateTech',
-            label: 'GitHub',
+            'aria-label': 'GitHub repository',
+            className: 'navbar-github-link',
             position: 'right',
           },
         ],
@@ -154,8 +154,9 @@ const config = {
         copyright: `Copyright © ${new Date().getFullYear()} NateTech, Inc. Built with Docusaurus.`,
       },
       prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
+        // theme: lightCodeTheme,
+        // darkTheme: darkCodeTheme,
+        theme: require('./core/PrismTheme')
       },
     }),
 };
