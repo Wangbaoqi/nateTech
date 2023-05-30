@@ -4,6 +4,8 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
+const remarkOembed = require('remark-oembed');
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'NateTech Stack',
@@ -38,18 +40,22 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          rehypePlugins: [],
+          remarkPlugins: [
+            [require('remark-oembed'), { syncWidget: true }]
+          ],
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/Wangbaoqi/nateTech/blob/main/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/Wangbaoqi/nateTech/blob/main/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.scss'),

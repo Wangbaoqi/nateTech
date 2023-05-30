@@ -28,7 +28,8 @@
 	--ifm-font-family-base: 'Optimistic Display', system-ui, -apple-system,
 		sans-serif;
 	--ifm-color-primary: #06bcee;
-	--ifm-font-size-base: 17px;
+	--ifm-color-strong: #2c0b8e;
+	--ifm-font-size-base: 16px;
 	--ifm-spacing-horizontal: 16px;
 	--ifm-navbar-item-padding-horizontal: 18px;
 	//  --ifm-menu-link-padding-horizontal: 0;
@@ -80,6 +81,7 @@ html[data-theme='dark'] {
 	--ifm-code-background: rgba(255, 255, 255, 0.06);
 	--ifm-toc-border-color: var(--dark);
 	--ifm-color-emphasis-300: var(--dark);
+	--ifm-color-strong: #ffe100;
 
 	--theme-plain: #fff;
 	--theme-comment: #757575;
@@ -235,6 +237,7 @@ hr {
 
 	strong {
 		font-weight: 600;
+		color: var(--ifm-color-strong);
 	}
 
 	table {
@@ -621,7 +624,7 @@ a[class*='tagRegular'] {
 	}
 
 	.navbar__brand:hover .navbar__logo {
-		transform: rotate(180deg) scale(0.9);
+		transform: rotate(360deg) scale(0.9);
 	}
 
 	.clean-btn:hover {
