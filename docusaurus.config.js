@@ -90,7 +90,7 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'frondEndSidebar',
             position: 'left',
-            label: '前端开发',
+            label: '前端技术',
           },
           {
             type: 'docSidebar',
