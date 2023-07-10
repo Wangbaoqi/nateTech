@@ -1,0 +1,49 @@
+{
+  "title": "Learn Computer Basic",
+  "path": "/computer",
+  "routes": [
+    {
+      "hasSectionHeader": true,
+      "sectionHeader": "Learn Computer Network"
+    },
+    {
+      "title": "计算机网络",
+      "path": "/computer/network",
+      "skipBreadcrumb": true,
+      "routes": [
+        {
+          "title": "基础概念以及术语",
+          "path": "/computer/network/overview"
+        },
+        {
+          "title": "网络接口层",
+          "path": "/computer/network/accessLayer"
+        },
+        {
+          "title": "应用层",
+          "path": "/computer/network/applicationLayer"
+        },
+        {
+          "title": "HTTP 报文",
+          "path": "/computer/network/httpMessage"
+        },
+        {
+          "title": "HTTP 缓存",
+          "path": "/computer/network/httpCache"
+        }
+      ]
+    },
+    {
+      "title": "设计模式",
+      "path": "/computer/design",
+      "skipBreadcrumb": true,
+      "routes": [
+        {
+          "title": "观察者模式",
+          "path": "/computer/design/watch"
+        }
+
+      ]
+    }
+  ]
+}

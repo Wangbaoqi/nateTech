@@ -1,41 +1,26 @@
-# Website
+# nateTech Docs
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+This repo contains the basic of computer, FrontEnd so and on.
+
+on line site please see [nateTech documentation](https://docs.wangbaoqi.tech/)
+
+## Getting started
+
+### Prerequisites
+
+1. Git
+1. Node: any 12.x version starting with v12.0.0 or greater
+1. Yarn: See [Yarn website for installation instructions](https://yarnpkg.com/lang/en/docs/install/)
+1. A fork of the repo (for any contributions)
+2. A clone of the [nateTech Docs repo](https://github.com/Wangbaoqi/nateTech) on your local machine
 
 ### Installation
 
-```
-$ yarn
-```
+1. `cd nateTech` to go into the project root
+3. `yarn` to install the website's npm dependencies
 
-### Local Development
+### Running locally
 
-```
-$ yarn start
-```
+1. `yarn dev` to start the development server (powered by [Next.js](https://nextjs.org/))
+1. `open http://localhost:3000` to open the site in your favorite browser
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
-
-### Build
-
-```
-$ yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
