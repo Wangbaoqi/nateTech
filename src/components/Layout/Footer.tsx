@@ -6,7 +6,7 @@ import * as React from 'react';
 import NextLink from 'next/link';
 import cn from 'classnames';
 import {ExternalLink} from 'components/ExternalLink';
-import {IconFacebookCircle} from 'components/Icon/IconFacebookCircle';
+import {IconLeetCode} from 'components/Icon/IconLeetCode';
 import {IconTwitter} from 'components/Icon/IconTwitter';
 import {IconGitHub} from 'components/Icon/IconGitHub';
 
@@ -285,45 +285,40 @@ export function Footer() {
           </div>
         </div>
         <div className="flex flex-col">
-          <FooterLink href="/learn" isHeader={true}>
-            Learn React
+          <FooterLink href="/computer" isHeader={true}>
+            Learn Computer
           </FooterLink>
-          <FooterLink href="/learn/">Quick Start</FooterLink>
-          <FooterLink href="/learn/installation">Installation</FooterLink>
-          <FooterLink href="/learn/describing-the-ui">
-            Describing the UI
+          <FooterLink href="/computer/network">Computer Network</FooterLink>
+          <FooterLink href="/computer/designPattern">Computer designPattern</FooterLink>
+          <FooterLink href="/computer/operator">
+            Computer OperatorSystem
           </FooterLink>
-          <FooterLink href="/learn/adding-interactivity">
-            Adding Interactivity
+          <FooterLink href="/computer/compilation">
+          Computer Compilation principle
           </FooterLink>
-          <FooterLink href="/learn/managing-state">Managing State</FooterLink>
-          <FooterLink href="/learn/escape-hatches">Escape Hatches</FooterLink>
+          <FooterLink href="https://algo.wangbaoqi.tech/">Algorithm</FooterLink>
         </div>
         <div className="flex flex-col">
-          <FooterLink href="/reference/react" isHeader={true}>
-            API Reference
+          <FooterLink href="/frontend" isHeader={true}>
+            FrontEnd
           </FooterLink>
-          <FooterLink href="/reference/react">React APIs</FooterLink>
-          <FooterLink href="/reference/react-dom">React DOM APIs</FooterLink>
+          <FooterLink href="/frontend/html">HTML</FooterLink>
+          <FooterLink href="/frontend/css">CSS</FooterLink>
+          <FooterLink href="/frontend/js">JavaScript</FooterLink>
+          <FooterLink href="/frontend/ts">TypeScript</FooterLink>
+          <FooterLink href="/frontend/ts">TypeScript</FooterLink>
         </div>
         <div className="md:col-start-2 xl:col-start-4 flex flex-col">
-          <FooterLink href="/community" isHeader={true}>
-            Community
+          <FooterLink href="/engineer" isHeader={true}>
+            Engineering
           </FooterLink>
-          <FooterLink href="https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md">
-            Code of Conduct
-          </FooterLink>
-          <FooterLink href="/community/team">Meet the Team</FooterLink>
-          <FooterLink href="/community/docs-contributors">
-            Docs Contributors
-          </FooterLink>
-          <FooterLink href="/community/acknowledgements">
-            Acknowledgements
+          <FooterLink href="/package">
+            Package
           </FooterLink>
         </div>
         <div className="flex flex-col">
           <FooterLink isHeader={true}>More</FooterLink>
-          <FooterLink href="/blog">Blog</FooterLink>
+          <FooterLink href="https://www.wangbaoqi.tech/">Blog</FooterLink>
           <FooterLink href="https://reactnative.dev/">React Native</FooterLink>
           <FooterLink href="https://opensource.facebook.com/legal/privacy">
             Privacy
@@ -333,20 +328,20 @@ export function Footer() {
           </FooterLink>
           <div className="flex flex-row mt-8 gap-x-2">
             <ExternalLink
-              aria-label="React on Facebook"
+              aria-label="Nate on LeetCode"
               href="https://www.facebook.com/react"
               className={socialLinkClasses}>
-              <IconFacebookCircle />
+              <IconLeetCode />
             </ExternalLink>
             <ExternalLink
-              aria-label="React on Twitter"
-              href="https://twitter.com/reactjs"
+              aria-label="Nate on Twitter"
+              href="https://twitter.com/baoqi_wang"
               className={socialLinkClasses}>
               <IconTwitter />
             </ExternalLink>
             <ExternalLink
-              aria-label="React on Github"
-              href="https://github.com/facebook/react"
+              aria-label="WangBaoQi on Github"
+              href="https://github.com/wangbaoqi"
               className={socialLinkClasses}>
               <IconGitHub />
             </ExternalLink>
