@@ -34,7 +34,7 @@ Web缓存一般分为：
 **HTTP缓存**即http协议缓存，浏览器根据http协议头部的特殊控制字段来控制资源缓存的机制。根据http协议版本的不同，用于控制缓存的头部字段主要分为`HTTP1.0`和`HTTP1.1`。
 
 
-## HTTP1.0
+## HTTP1.0 {/*http10*/}
 
 `Pragma: no-cache`: 通用首部，其是否使用缓存，与 `Cache-Control: no-cache` 效果一致。强制要求缓存服务器在返回缓存的版本之前将请求提交到源头服务器进行验证。
 
@@ -50,9 +50,9 @@ Web缓存一般分为：
 
 而HTTP缓存现在都是基于`HTTP1.1`的。
 
-## HTTP1.1
+## HTTP1.1 {/*http11*/}
 
-### Age
+### Age {/*age*/}
 
 `Age` 消息头里包含对象在缓存代理中存贮的时长，以秒为单位。.
 
@@ -60,7 +60,7 @@ Web缓存一般分为：
 
 
 
-### Cache-Control
+### Cache-Control {/*cache-control*/}
 
 `Cache-Control` 通用消息头字段，被用于在 `http` 请求和响应中，通过指定指令来实现缓存机制。缓存指令是单向的，这意味着在请求中设置的指令，不一定被包含在响应中。
 
@@ -113,7 +113,7 @@ Cache-control: s-maxage=<seconds>
 - `only-if-cached`：表明客户端只接受已缓存的响应，并且不要向原始服务器检查是否有更新的拷贝。
 
 
-### Last-Modified/If-Modified-Since
+### Last-Modified/If-Modified-Since {/*last-modifiedif-modified-since*/}
 
 `Last-Modified` 是一个响应首部，其中包含源头服务器认定的资源做出修改的日期及时间。它通常被用作一个验证器来判断接收到的或者存储的资源是否彼此一致。由于精确度比 `ETag` 要低，所以这是一个备用机制。包含有 `If-Modified-Since` 或 `If-Unmodified-Since` 首部的条件请求会使用这个字段。
 
@@ -123,7 +123,7 @@ Cache-control: s-maxage=<seconds>
 当与 `If-None-Match` 一同出现时，它（`If-Modified-Since`）会被忽略掉，除非服务器不支持 `If-None-Match`。
 
 
-### ETag/If-None-Match
+### ETag/If-None-Match {/*etagif-none-match*/}
 
 `ETag` 响应头是资源的特定版本的标识符。这可以让缓存更高效，并节省带宽，因为如果内容没有改变，Web 服务器不需要发送完整的响应。而如果内容发生了变化，使用 `ETag` 有助于防止资源的同时更新相互覆盖（“空中碰撞”）。
 
@@ -132,7 +132,7 @@ Cache-control: s-maxage=<seconds>
 `If-None-Match`: 请求头部中的标识，当资源过期后，需要向服务器发送验证请求，如果过期的缓存副本中包含了Etag，那验证请求的头部会带上`If-None-Match`标识，值为缓存副本中 `ETag` 的值，服务器获取该值后与资源当前hash值做比较，如果相同，则返回304并更新相关缓存值，如果不相同，说明资源被修改过，则返回200和新资源，对应更新缓存。
 
 
-### Last-Modified 和 ETag
+### Last-Modified 和 ETag {/*last-modified-和-etag*/}
 
 `Cache-Control` 用来控制缓存，而`Last-Modified`和`ETag`则是用来当缓存过期后，重新请求服务器验证时使用。
 
@@ -146,8 +146,92 @@ Cache-control: s-maxage=<seconds>
 总而言之，各有各的好处，根据不同的场景，选择适合服务器的机制，或者两者都使用，当两这同时存在的时候，其`ETag`的优先级会比较高，先判断`ETag`，其次是`Last-Modified`，最后才决定返回`200`还是`304`
 
 
+## 缓存处理流程 {/*缓存处理流程*/}
+
+### 首次请求资源 {/*首次请求资源*/}
+
+首次请求，没有缓存规则，以`Cache-Control: no-cache`请求数据，服务返回资源以及缓存规则
+
+<Mermaid chart={`
+	sequenceDiagram
+		autonumber
+		participant Browser
+    participant Cache
+    participant Server
+		Browser ->>+ Cache: 请求数据
+		Cache -->>- Browser: 没有缓存
+
+		Browser ->>+ Server: 请求数据
+		Server -->>- Browser: 返回数据以及缓存规则
+
+		Browser ->>+ Cache: 将缓存和缓存规则存入缓存数据库
+
+`}/>
 
 
+### 二次请求 {/*二次请求*/}
+
+非首次请求，则需要判断是否使用还是重新请求新的资源。
+
+这里首先查看 **强缓存** 是否有效，无效则查看 **协商缓存**，
+
+
+<Mermaid chart={`
+	sequenceDiagram
+		autonumber
+		participant Browser
+    participant Cache
+    participant Server
+
+	  Browser ->>+ Cache: 请求数据
+    alt 强缓存命中
+  		Note over Browser, Cache: 缓存是否有Pragma、Expires以及Cache-Control
+			Cache -->>- Browser: 有缓存且尚未失效
+		else 强缓存失效
+			Cache -->> Browser: 有缓存且已失效
+    	Browser ->> Server: 携带缓存数据请求数据
+
+			alt 协商缓存命中
+				Server -->>+ Browser: 通知浏览器该资源未失效
+    	  Browser ->>+ Cache: 获取缓存数据
+  			Cache -->>- Browser: 返回缓存数据
+  		else 协商缓存失效
+				Server -->>+ Browser: 该资源已失效并返回新的缓存数据以及规则
+				Browser ->>+ Cache: 将新的缓存和缓存规则存入缓存数据库
+  		end
+		end
+`}/>
+
+
+### 整体流程 {/*整体流程*/}
+
+
+<Mermaid chart={`
+	flowchart TB
+	A(浏览器请求) --> B{是否有缓存}
+	B{是否有缓存} -->|No,使用no-store|C1(向服务器请求) --> C2(服务端返回数据以及缓存规则) --> C3(缓存数据以及规则) --> C4(首次请求) --> Z(请求结束)
+	B{是否有缓存} -->|Yes|D1(读取缓存数据) --> D2{是否强缓存}
+	D2{是否有强缓存字段} -->|Yes|E1{缓存是否过期}
+	D2{是否有强缓存字段} -->|No|F1(向服务器发送if-None-Match,if-Modified-Since的请求)
+	E1{缓存是否过期} -->|No|G1(读取缓存) --> Y(强缓存) --> Z(请求结束)
+	E1{缓存是否过期} -->|Yes|F1(向服务器发送if-None-Match,if-Modified-Since的请求)
+
+	F1(向服务器发送if-None-Match,if-Modified-Since的请求) -->|协商缓存判断|H{是否有ETag}
+	H{是否有ETag} -->|Yes|I(比较ETag和If-None-Match) --> J{是否一致} -->|No|K(返回新的ETag和资源status:200) --> X(协商缓存)
+  H{是否有ETag} -->|No|I1(比较if-Modified-Since和Last-Modified) -->J1{是否一致} -->|No|K1(返回新的Last-Modified和资源status: 200) --> X(协商缓存)
+
+	J{是否一致} -->|Yes|K2(命中协商缓存返回304资源无更新)
+	J1{是否一致} -->|Yes|K2(命中协商缓存返回304资源无更新)
+
+	K2(命中协商缓存返回304资源无更新) --> X(协商缓存)
+
+	X(协商缓存) --> Z(请求结束)
+
+
+
+`}/>
 
 
 https://zhuanlan.zhihu.com/p/90507417
+
+

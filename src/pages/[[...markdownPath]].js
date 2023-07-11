@@ -21,8 +21,6 @@ export default function Layout({content, toc, meta}) {
   );
   const parsedToc = useMemo(() => JSON.parse(toc, reviveNodeOnClient), [toc]);
   const section = useActiveSection();
-  console.log(section, 'useActiveSection');
-  console.log(content, 'content');
 
   let routeTree;
   switch (section) {
@@ -46,8 +44,6 @@ export default function Layout({content, toc, meta}) {
       routeTree = sidebarComputer;
       break;
   }
-
-  console.log(routeTree, 'routeTree');
 
   return (
     <Page toc={parsedToc} routeTree={routeTree} meta={meta} section={section}>
@@ -124,7 +120,6 @@ export async function getStaticProps(context) {
 
   // Read MDX from the file.
   let path = (context.params.markdownPath || []).join('/') || 'index';
-  console.log(rootDir + path + '.md', 'dddd');
   let mdx;
   try {
     mdx = fs.readFileSync(rootDir + path + '.md', 'utf8');
@@ -295,7 +290,6 @@ export async function getStaticPaths() {
 
   const files = await getFiles(rootDir);
 
-  console.log(JSON.stringify(files), 'files');
   const paths = files.map((file) => ({
     params: {
       markdownPath: getSegments(file),

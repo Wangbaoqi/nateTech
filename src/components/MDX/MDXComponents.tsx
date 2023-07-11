@@ -13,6 +13,7 @@ import ExpandableCallout from './ExpandableCallout';
 import ExpandableExample from './ExpandableExample';
 import {H1, H2, H3, H4} from './Heading';
 import InlineCode from './InlineCode';
+import Mermaid from './Mermaid';
 import Intro from './Intro';
 import BlogCard from './BlogCard';
 import Link from './Link';
@@ -390,6 +391,7 @@ export const MDXComponents = {
   code: InlineCode,
   pre: CodeBlock,
   CodeDiagram,
+  Mermaid,
   ConsoleBlock,
   DeepDive: (props: {
     children: React.ReactNode;
