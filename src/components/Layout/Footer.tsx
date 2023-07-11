@@ -289,12 +289,14 @@ export function Footer() {
             Learn Computer
           </FooterLink>
           <FooterLink href="/computer/network">Computer Network</FooterLink>
-          <FooterLink href="/computer/designPattern">Computer designPattern</FooterLink>
+          <FooterLink href="/computer/designPattern">
+            Computer designPattern
+          </FooterLink>
           <FooterLink href="/computer/operator">
             Computer OperatorSystem
           </FooterLink>
           <FooterLink href="/computer/compilation">
-          Computer Compilation principle
+            Computer Compilation principle
           </FooterLink>
           <FooterLink href="https://algo.wangbaoqi.tech/">Algorithm</FooterLink>
         </div>
@@ -312,9 +314,7 @@ export function Footer() {
           <FooterLink href="/engineer" isHeader={true}>
             Engineering
           </FooterLink>
-          <FooterLink href="/package">
-            Package
-          </FooterLink>
+          <FooterLink href="/package">Package</FooterLink>
         </div>
         <div className="flex flex-col">
           <FooterLink isHeader={true}>More</FooterLink>

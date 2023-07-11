@@ -29,7 +29,14 @@ interface PageProps {
   toc: Array<TocItem>;
   routeTree: RouteItem;
   meta: {title?: string; description?: string};
-  section: 'learn' | 'computer' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
+  section:
+    | 'learn'
+    | 'computer'
+    | 'reference'
+    | 'community'
+    | 'blog'
+    | 'home'
+    | 'unknown';
 }
 
 export function Page({children, toc, routeTree, meta, section}: PageProps) {
@@ -143,7 +150,6 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
                 'self-stretch w-full',
                 isHomePage && 'bg-wash dark:bg-gray-95 mt-[-1px]'
               )}>
-
               <div
                 className={cn(
                   'py-12 px-5 sm:px-12 md:px-12 sm:py-12 md:py-16 lg:py-14',

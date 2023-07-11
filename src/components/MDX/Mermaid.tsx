@@ -6,12 +6,22 @@ mermaid.initialize({
   theme: 'forest',
 });
 
-const Mermaid = ({chart}) => {
+const Mermaid = (props: {
+  chart:
+    | string
+    | number
+    | boolean
+    | React.ReactElement<any, string | React.JSXElementConstructor<any>>
+    | React.ReactFragment
+    | React.ReactPortal
+    | null
+    | undefined;
+}) => {
   useEffect(() => {
     mermaid.contentLoaded();
   }, []);
 
-  return <div className="mermaid my-4">{chart}</div>;
+  return <div className="mermaid my-4">{props.chart}</div>;
 };
 
 export default Mermaid;

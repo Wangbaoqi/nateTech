@@ -140,7 +140,14 @@ export default function TopNav({
 }: {
   routeTree: RouteItem;
   breadcrumbs: RouteItem[];
-  section: 'computer' | 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
+  section:
+    | 'computer'
+    | 'learn'
+    | 'reference'
+    | 'community'
+    | 'blog'
+    | 'home'
+    | 'unknown';
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const scrollParentRef = useRef<HTMLDivElement>(null);
@@ -234,30 +241,30 @@ export default function TopNav({
             {'dark:shadow-nav-dark shadow-nav': isScrolled || isOpen}
           )}>
           <div className="h-16 w-full gap-0 sm:gap-3 flex items-center justify-between">
-            <div className='flex items-center'>
+            <div className="flex items-center">
               <div className="3xl:flex-1 flex flex-row ">
-              <button
-                type="button"
-                aria-label="Menu"
-                onClick={() => setIsOpen(!isOpen)}
-                className={cn(
-                  'active:scale-95 transition-transform flex lg:hidden w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link',
-                  {
-                    'text-link dark:text-link-dark': isOpen,
-                  }
-                )}>
-                {isOpen ? <IconClose /> : <IconHamburger />}
-              </button>
-              <div className="3xl:flex-1 flex align-center">
-                <NextLink href="/">
-                  <a
-                    className={`active:scale-95 overflow-hidden transition-transform relative items-center text-primary dark:text-primary-dark p-1 whitespace-nowrap outline-link rounded-full 3xl:rounded-xl inline-flex text-lg font-normal gap-2`}>
-                    <Logo className='text-sm mr-0 w-10 h-10 text-link dark:text-link-dark flex origin-center transition-all ease-in-out' />
-                    <span className="sr-only 3xl:not-sr-only">NateTech</span>
-                    <span className=''>NateTech</span>
-                  </a>
-                </NextLink>
-              </div>
+                <button
+                  type="button"
+                  aria-label="Menu"
+                  onClick={() => setIsOpen(!isOpen)}
+                  className={cn(
+                    'active:scale-95 transition-transform flex lg:hidden w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link',
+                    {
+                      'text-link dark:text-link-dark': isOpen,
+                    }
+                  )}>
+                  {isOpen ? <IconClose /> : <IconHamburger />}
+                </button>
+                <div className="3xl:flex-1 flex align-center">
+                  <NextLink href="/">
+                    <a
+                      className={`active:scale-95 overflow-hidden transition-transform relative items-center text-primary dark:text-primary-dark p-1 whitespace-nowrap outline-link rounded-full 3xl:rounded-xl inline-flex text-lg font-normal gap-2`}>
+                      <Logo className="text-sm mr-0 w-10 h-10 text-link dark:text-link-dark flex origin-center transition-all ease-in-out" />
+                      <span className="sr-only 3xl:not-sr-only">NateTech</span>
+                      <span className="">NateTech</span>
+                    </a>
+                  </NextLink>
+                </div>
               </div>
               <div className="text-base justify-center items-center gap-1.5 flex 3xl:flex-1 flex-row 3xl:justify-end">
                 <div className="mx-2.5 gap-1.5 hidden lg:flex">
@@ -275,10 +282,10 @@ export default function TopNav({
                   <NavItem isActive={section === 'community'} url="/community">
                     Community
                   </NavItem> */}
-                  <NavItem url="https://algo.wangbaoqi.tech" target='_blank'>
+                  <NavItem url="https://algo.wangbaoqi.tech" target="_blank">
                     Algorithm
                   </NavItem>
-                  <NavItem url="https://wangbaoqi.tech" target='_blank'>
+                  <NavItem url="https://wangbaoqi.tech" target="_blank">
                     Blog
                   </NavItem>
                 </div>

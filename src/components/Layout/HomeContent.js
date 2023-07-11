@@ -122,26 +122,21 @@ export function HomeContent() {
     <>
       <div className="pl-0">
         <div className="mx-5 mt-12 lg:mt-24 mb-20 lg:mb-32 flex flex-col gap-7 justify-center">
-
-          <div className='w-40 flex items-center self-center'>
+          <div className="w-40 flex items-center self-center">
             <Logo width={152} height={152} />
           </div>
 
-          <div className='flex items-center self-center font-semibold text-5xl flex-wrap lg:text-6xl max-w-4xl lg:max-w-4xl'>
-            {'🎉\xa0'}{'NateTech Stack'}{'\xa0🥳'}
+          <div className="flex items-center self-center font-semibold text-5xl flex-wrap lg:text-6xl max-w-4xl lg:max-w-4xl">
+            {'🎉\xa0'}
+            {'NateTech Stack'}
+            {'\xa0🥳'}
           </div>
           <Para>
-            dedicated to {' '}
-              <b>
-                <a href="">
-                  web development
-                </a>{' '}
-                and{' '}
-                <a href="">
-                  cross-platform development
-                </a>{' '}
-                always!
-              </b>
+            dedicated to{' '}
+            <b>
+              <a href="">web development</a> and{' '}
+              <a href="">cross-platform development</a> always!
+            </b>
           </Para>
           <div className="mt-5 self-center flex gap-2 w-full sm:w-auto flex-col sm:flex-row">
             <ButtonLink
@@ -168,7 +163,7 @@ export function HomeContent() {
             <Header>Languages and Tools 💻</Header>
           </Center>
           <FullBleed>
-            <LanguageContent  />
+            <LanguageContent />
           </FullBleed>
         </Section>
       </div>
@@ -268,13 +263,9 @@ const LanguageImages = [
 ];
 const LanguageContent = memo(function CommunityImages({isLazy}) {
   return (
-    <div className='flex justify-center flex-wrap gap-4'>
+    <div className="flex justify-center flex-wrap gap-4">
       {LanguageImages.map(({src, alt}, i) => (
-        <div
-          key={i}
-          className={cn(
-            `flex justify-center px-5 w-32 relative`
-          )}>
+        <div key={i} className={cn(`flex justify-center px-5 w-32 relative`)}>
           <div>
             <img
               loading={isLazy ? 'lazy' : 'eager'}
@@ -288,4 +279,3 @@ const LanguageContent = memo(function CommunityImages({isLazy}) {
     </div>
   );
 });
-
