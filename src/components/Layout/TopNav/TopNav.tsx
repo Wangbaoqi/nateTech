@@ -374,8 +374,8 @@ export default function TopNav({
                 {/* No fallback UI so need to be careful not to suspend directly inside. */}
                 <Suspense fallback={null}>
                   <div className="pl-3 xs:pl-5 xs:gap-0.5 xs:text-base overflow-x-auto flex flex-row lg:hidden text-base font-bold text-secondary dark:text-secondary-dark">
-                    <NavItem isActive={section === 'learn'} url="/learn">
-                      Learn
+                    <NavItem isActive={section === 'computer'} url="/computer">
+                      computer
                     </NavItem>
                     <NavItem
                       isActive={section === 'reference'}
