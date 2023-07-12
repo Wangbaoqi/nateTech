@@ -311,10 +311,10 @@ export function Footer() {
           <FooterLink href="/frontend/ts">TypeScript</FooterLink>
         </div>
         <div className="md:col-start-2 xl:col-start-4 flex flex-col">
-          <FooterLink href="/engineer" isHeader={true}>
+          <FooterLink href="/engineering" isHeader={true}>
             Engineering
           </FooterLink>
-          <FooterLink href="/package">Package</FooterLink>
+          <FooterLink href="/engineering/package">Package</FooterLink>
         </div>
         <div className="flex flex-col">
           <FooterLink isHeader={true}>More</FooterLink>

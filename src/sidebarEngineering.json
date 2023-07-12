@@ -1,0 +1,25 @@
+{
+  "title": "Learn FrontEnd Engineering",
+  "path": "/engineering",
+  "routes": [
+    {
+      "hasSectionHeader": true,
+      "sectionHeader": "Learn FrontEnd Engineering"
+    },
+    {
+      "title": "Overview",
+      "path": "/engineering"
+    },
+    {
+      "title": "Package",
+      "path": "/engineering/package",
+      "skipBreadcrumb": true,
+      "routes": [
+        {
+          "title": "npm和package",
+          "path": "/engineering/package/know-npm-package"
+        }
+      ]
+    }
+  ]
+}

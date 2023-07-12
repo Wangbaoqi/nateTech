@@ -7,12 +7,12 @@ import {useRouter} from 'next/router';
 import {MDXComponents} from 'components/MDX/MDXComponents';
 import {Page} from 'components/Layout/Page';
 import sidebarHome from '../sidebarHome.json';
-import sidebarLearn from '../sidebarLearn.json';
 import sidebarReference from '../sidebarReference.json';
 import sidebarCommunity from '../sidebarCommunity.json';
 import sidebarBlog from '../sidebarBlog.json';
 
 import sidebarComputer from '../sidebarComputer.json';
+import sidebarEngineering from '../sidebarEngineering.json';
 
 export default function Layout({content, toc, meta}) {
   const parsedContent = useMemo(
@@ -28,8 +28,8 @@ export default function Layout({content, toc, meta}) {
     case 'unknown':
       routeTree = sidebarHome;
       break;
-    case 'learn':
-      routeTree = sidebarLearn;
+    case 'engineering':
+      routeTree = sidebarEngineering;
       break;
     case 'reference':
       routeTree = sidebarReference;
@@ -59,8 +59,8 @@ function useActiveSection() {
     return 'home';
   } else if (cleanedPath.startsWith('/reference')) {
     return 'reference';
-  } else if (asPath.startsWith('/learn')) {
-    return 'learn';
+  } else if (asPath.startsWith('/engineering')) {
+    return 'engineering';
   } else if (asPath.startsWith('/community')) {
     return 'community';
   } else if (asPath.startsWith('/blog')) {

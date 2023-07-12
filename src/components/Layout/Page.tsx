@@ -30,7 +30,7 @@ interface PageProps {
   routeTree: RouteItem;
   meta: {title?: string; description?: string};
   section:
-    | 'learn'
+    | 'engineering'
     | 'computer'
     | 'reference'
     | 'community'
@@ -104,7 +104,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
   }
 
   let searchOrder;
-  if (section === 'learn' || (section === 'blog' && !isBlogIndex)) {
+  if (section === 'blog' && !isBlogIndex) {
     searchOrder = order;
   }
 

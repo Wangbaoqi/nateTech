@@ -142,7 +142,7 @@ export default function TopNav({
   breadcrumbs: RouteItem[];
   section:
     | 'computer'
-    | 'learn'
+    | 'engineering'
     | 'reference'
     | 'community'
     | 'blog'
@@ -271,10 +271,12 @@ export default function TopNav({
                   <NavItem isActive={section === 'computer'} url="/computer">
                     Computer
                   </NavItem>
-                  {/* <NavItem isActive={section === 'learn'} url="/learn">
-                    Learn
-                  </NavItem>
                   <NavItem
+                    isActive={section === 'engineering'}
+                    url="/engineering">
+                    engineering
+                  </NavItem>
+                  {/* <NavItem
                     isActive={section === 'reference'}
                     url="/reference/react">
                     Reference
