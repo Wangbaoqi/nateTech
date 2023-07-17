@@ -58,5 +58,17 @@ package是由`package.json`文件描述的一个文件或者目录，一个packa
 
 `name`字段包含您的软件包的名称，必须是小写和一个单词，并且可能包含连字符和下划线。
 
-“版本”字段必须以x.x.x的形式，并遵循[语义版本指南](https://docs.npmjs.com/about-semantic-versioning)。
+`version`字段必须以x.x.x的形式，并遵循[语义版本指南](https://docs.npmjs.com/about-semantic-versioning)。
+
+
+**package主要有以下内容：**
+
+- **semver**: 语义化版本
+- **dependencies**: 开发依赖
+- **engines**: 指定Node的版本
+- **script**: 指定npm的执行脚本
+
+
+
+
 

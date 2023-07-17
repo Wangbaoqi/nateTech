@@ -18,6 +18,10 @@
         {
           "title": "npm和package",
           "path": "/engineering/package/know-npm-package"
+        },
+        {
+          "title": "SemverVersion",
+          "path": "/engineering/package/semver"
         }
       ]
     }

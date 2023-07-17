@@ -29,7 +29,7 @@ title: 应用层
 
 </YouWillLearn>
 
-## 应用层中的协议
+## 应用层中的协议 {/*应用层中的协议*/}
 
 在应用层中常见的应用以及其协议
 
@@ -59,7 +59,7 @@ title: 应用层
 - **IRC**: IRC代表互联网中继聊天。这是一个基于文本的即时消息/聊天系统。IRC用于群组或一对一通信。它还支持聊天中的文件、媒体、数据共享。它适用于客户端-服务器模型。用户通过一些网络/独立应用程序连接到IRC服务器或IRC网络。
 - **MIME**: MIME代表多用途互联网邮件扩展。该协议旨在扩展现有互联网电子邮件协议（如SMTP）的功能。MIME允许通过SMTP发送非ASCII数据。它允许用户通过互联网发送/接收各种文件，如音频、视频、程序等。MIME不是一个独立的协议，它与其他协议合作以扩展其功能。
 
-## DNS
+## DNS {/*dns*/}
 
 <Intro>
 
@@ -102,7 +102,7 @@ nslookup www.wangbaoqi.tech
 关于DNS的更多的工作细节，请查阅[working of dns server](https://www.geeksforgeeks.org/working-of-domain-name-system-dns-server/)
 
 
-## HTTP
+## HTTP {/*http*/}
 
 我们所熟知的Web应用程序、Web服务器等都是通过**HTTP**来通信的，它也是应用层的协议，全称 **超文本传输协议**。
 
@@ -113,10 +113,11 @@ nslookup www.wangbaoqi.tech
 - **URL**: 统一资源定位符，资源标识符的常见方式，它标识了资源在服务器上的位置以及如何访问它。更多[URL Spec](https://url.spec.whatwg.org/)
 - **URN**: 统一资源名，URN作为资源唯一的名称。
 - **事务**：是由请求和响应组成，通过HTTP报文进行的，包括请求方法、状态码等。
-- **报文**：报文有请求和响应报文，是请求和响应的数据载体。
+- **[报文](/computer/network/httpMessage)**：报文有请求和响应报文，是请求和响应的数据载体。
 - **代理**：位于客户端和服务器之间的HTTP中间实体
-- **缓存**：Web缓存和代理缓存是一种特殊的代理服务器。
+- **[缓存](/computer/network/httpCache)**：Web缓存和代理缓存是一种特殊的代理服务器。
 - **网关**：是一种特殊的服务器，作为其他服务器之间的中间实体使用，通常用于将HTTP流量转换成其他的协议。
+- **cookie**: 是一种当前识别用户，实现持久会话的方式。
 - **隧道**：常见的用途是通过HTTP连接承接加密的安全套接字层（SSL）
 - **Agent代理**：代表用户发起请求的客户端程序，常见的有Web浏览器等。
 
@@ -124,6 +125,6 @@ nslookup www.wangbaoqi.tech
 
 
 
-## Reference
+## Reference {/*reference*/}
 
 - [RFC2616](https://www.ietf.org/rfc/rfc2616.txt)
