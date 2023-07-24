@@ -13,6 +13,7 @@ import sidebarBlog from '../sidebarBlog.json';
 
 import sidebarComputer from '../sidebarComputer.json';
 import sidebarEngineering from '../sidebarEngineering.json';
+import sidebarReact from '../sidebarReact.json';
 
 export default function Layout({content, toc, meta}) {
   const parsedContent = useMemo(
@@ -31,8 +32,8 @@ export default function Layout({content, toc, meta}) {
     case 'engineering':
       routeTree = sidebarEngineering;
       break;
-    case 'reference':
-      routeTree = sidebarReference;
+    case 'react':
+      routeTree = sidebarReact;
       break;
     case 'community':
       routeTree = sidebarCommunity;
@@ -57,8 +58,8 @@ function useActiveSection() {
   const cleanedPath = asPath.split(/[\?\#]/)[0];
   if (cleanedPath === '/') {
     return 'home';
-  } else if (cleanedPath.startsWith('/reference')) {
-    return 'reference';
+  } else if (cleanedPath.startsWith('/react')) {
+    return 'react';
   } else if (asPath.startsWith('/engineering')) {
     return 'engineering';
   } else if (asPath.startsWith('/community')) {

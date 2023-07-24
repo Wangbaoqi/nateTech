@@ -143,7 +143,7 @@ export default function TopNav({
   section:
     | 'computer'
     | 'engineering'
-    | 'reference'
+    | 'react'
     | 'community'
     | 'blog'
     | 'home'
@@ -276,12 +276,10 @@ export default function TopNav({
                     url="/engineering">
                     engineering
                   </NavItem>
-                  {/* <NavItem
-                    isActive={section === 'reference'}
-                    url="/reference/react">
-                    Reference
+                  <NavItem isActive={section === 'react'} url="/react">
+                    React
                   </NavItem>
-                  <NavItem isActive={section === 'community'} url="/community">
+                  {/* <NavItem isActive={section === 'community'} url="/community">
                     Community
                   </NavItem> */}
                   <NavItem url="https://algo.wangbaoqi.tech" target="_blank">
@@ -377,10 +375,8 @@ export default function TopNav({
                     <NavItem isActive={section === 'computer'} url="/computer">
                       computer
                     </NavItem>
-                    <NavItem
-                      isActive={section === 'reference'}
-                      url="/reference/react">
-                      Reference
+                    <NavItem isActive={section === 'react'} url="/react">
+                      React
                     </NavItem>
                     <NavItem
                       isActive={section === 'community'}

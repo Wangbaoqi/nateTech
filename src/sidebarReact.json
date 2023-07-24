@@ -1,0 +1,53 @@
+{
+  "title": "Learn React",
+  "path": "/react",
+  "routes": [
+    {
+      "title": "Overview",
+      "path": "/react"
+    },
+    {
+      "hasSectionHeader": true,
+      "sectionHeader": "REACT CORE"
+    },
+    {
+      "title": "React Concept",
+      "path": "/react/concept",
+      "routes": [
+        {
+          "title": "JSX",
+          "path": "/react/concept/jsx"
+        }
+      ]
+    },
+    {
+      "title": "React Core",
+      "path": "/react/core",
+      "routes": [
+        {
+          "title": "React Fiber",
+          "path": "/react/core/fiber"
+        }
+      ]
+    },
+    {
+      "hasSectionHeader": true,
+      "sectionHeader": "SELF REACT"
+    },
+    {
+      "title": "React的实现",
+      "path": "/react/realize"
+    },
+    {
+      "title": "实现JSX",
+      "tags": [],
+      "path": "/react/realize/jsx",
+      "routes": [
+        {
+          "title": "JSX转换",
+          "path": "/react/realize/jsx/jsx"
+        }
+      ]
+    }
+  ]
+}
