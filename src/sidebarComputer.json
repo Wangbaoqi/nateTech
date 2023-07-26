@@ -4,7 +4,7 @@
   "routes": [
     {
       "hasSectionHeader": true,
-      "sectionHeader": "Learn Computer Network"
+      "sectionHeader": "Learn Computer Basic"
     },
     {
       "title": "计算机网络",
@@ -34,6 +34,29 @@
         {
           "title": "HTTP 缓存",
           "path": "/computer/network/httpCache"
+        }
+      ]
+    },
+    {
+      "title": "浏览器工作原理",
+      "path": "/computer/browser",
+      "skipBreadcrumb": true,
+      "routes": [
+        {
+          "title": "浏览器架构",
+          "path": "/computer/browser/frame"
+        },
+        {
+          "title": "浏览器渲染",
+          "path": "/computer/browser/render"
+        },
+        {
+          "title": "浏览器EventLoop",
+          "path": "/computer/browser/event"
+        },
+        {
+          "title": "浏览器页面生命周期",
+          "path": "/computer/browser/lifecycle"
         }
       ]
     },

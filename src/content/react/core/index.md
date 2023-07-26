@@ -88,6 +88,33 @@ FiberRoot -> update state -> diff algo -> update Fiber Tree
 
 归过程的最后，会产生一条effect组成的单链表，最后交给渲染器同步更新DOM
 
+#### Diff {/*diff*/}
+
+降低复杂度，diff算法进行了限制：
+
+1. 同级元素
+2. 不同类型的元素会重新创建节点
+3. 通过增加 key props来进行复用节点
+
+##### 单节点Diff {/*单节点diff*/}
+
+元素类型为 object string number时，进行单元素diff
+
+单元素有以下需要diff的场景
+
+- 单节点更新后还是单节点
+- 单节点更新后是多节点
+
+如果元素的 key 和 type 都相同的话，则进行复用，否则创建新的节点
+
+##### 多节点Diff {/*多节点diff*/}
+
+多节点diff也有以下的场景
+
+1. 节点更新（props、type）
+2. 节点数量更新
+3. 节点位置更新
+
 ### 渲染器 - Render {/*渲染器---render*/}
 
 渲染器主要遍历effectList中的每个Fiber节点，执行Fiber节点中的副作用（变化的props、声明周期钩子、hook）
