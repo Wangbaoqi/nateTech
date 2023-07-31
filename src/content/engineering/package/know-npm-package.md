@@ -60,10 +60,29 @@ package是由`package.json`文件描述的一个文件或者目录，一个packa
 
 `version`字段必须以x.x.x的形式，并遵循[语义版本指南](https://docs.npmjs.com/about-semantic-versioning)。
 
+**查找真实的package**
+
+可以通过常用的CDN厂商[jsdelivr](https://www.jsdelivr.com/)和[unpkg](https://www.unpkg.com/)
+
+```
+查找包通过其名称
+unpkg.com/:package@:version/:file
+cdn.jsdelivr.net/npm/:package/
+cdn.jsdelivr.net/npm/:package@:version/
+```
+
+可以使用下面命令可以查看包或者其信息
+
+```shell
+npm docs react // 查看包的官方文档
+npm view react // 查看包的基本信息
+npm repo react // 查看包的git仓库地址
+npm unstar react // 移除已经start的git仓库
+```
 
 **package主要有以下内容：**
 
-- **semver**: 语义化版本
+- [semver version](/engineering/package/semver): 语义化版本
 - **dependencies**: 开发依赖
 - **engines**: 指定Node的版本
 - **script**: 指定npm的执行脚本

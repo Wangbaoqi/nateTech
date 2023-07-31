@@ -2,13 +2,14 @@
   "title": "Learn FrontEnd Engineering",
   "path": "/engineering",
   "routes": [
-    {
-      "hasSectionHeader": true,
-      "sectionHeader": "Learn FrontEnd Engineering"
-    },
+
     {
       "title": "Overview",
       "path": "/engineering"
+    },
+    {
+      "hasSectionHeader": true,
+      "sectionHeader": "Learn Package"
     },
     {
       "title": "Package",
@@ -22,6 +23,17 @@
         {
           "title": "SemverVersion",
           "path": "/engineering/package/semver"
+        }
+      ]
+    },
+    {
+      "title": "Package Manager",
+      "path": "/engineering/package-manager",
+      "skipBreadcrumb": true,
+      "routes": [
+        {
+          "title": "package manager confirm",
+          "path": "/engineering/package-manager/confirm"
         }
       ]
     }
