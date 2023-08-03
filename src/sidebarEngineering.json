@@ -23,6 +23,10 @@
         {
           "title": "SemverVersion",
           "path": "/engineering/package/semver"
+        },
+        {
+          "title": "dependencies",
+          "path": "/engineering/package/dependencies"
         }
       ]
     },
