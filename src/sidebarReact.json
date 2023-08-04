@@ -27,6 +27,10 @@
         {
           "title": "React Fiber",
           "path": "/react/core/fiber"
+        },
+        {
+          "title": "React Reconcile",
+          "path": "/react/core/reconciler"
         }
       ]
     },
@@ -41,13 +45,7 @@
     {
       "title": "实现JSX",
       "tags": [],
-      "path": "/react/realize/jsx",
-      "routes": [
-        {
-          "title": "JSX转换",
-          "path": "/react/realize/jsx/jsx"
-        }
-      ]
+      "path": "/react/realize/jsx"
     }
   ]
 }

@@ -184,8 +184,8 @@ function Recipes(props: any) {
 }
 
 function AuthorCredit({
-  author = 'Rachel Lee Nabors',
-  authorLink = 'http://rachelnabors.com/',
+  author = 'Nate Wang',
+  authorLink = '',
 }: {
   author: string;
   authorLink: string;
@@ -272,7 +272,11 @@ function IllustrationBlock({
   const images = imageInfos.map((info, index) => (
     <figure key={index}>
       <div className="bg-white rounded-lg p-4 flex-1 flex xl:p-6 justify-center items-center my-4">
-        <img src={info.src} alt={info.alt} height={info.height} />
+        {info.src ? (
+          <img src={info.src} alt={info.alt} height={info.height} />
+        ) : (
+          info.alt
+        )}
       </div>
       {info.caption ? (
         <figcaption className="text-secondary dark:text-secondary-dark text-center leading-tight mt-4">
