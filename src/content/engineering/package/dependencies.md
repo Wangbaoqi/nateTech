@@ -31,8 +31,6 @@ aliases: add, i, in, ins, inst, insta, instal, isnt, isnta, isntal, isntall
 - package-lock.json
 - yarn.lock
 
-### command line {/*command-line*/}
-
 一般通过`npm install`来安装依赖，也可以增加 option 来选择安装不同环境的依赖
 
 **语法**
@@ -55,33 +53,34 @@ npm install <package-name> --save-bundle            # saving dependencies to bun
 
 ```
 
+关于[package name specifier](https://docs.npmjs.com/cli/v9/using-npm/package-spec)主要有以下几种：
 
-除了比较常见的安装方式，还有以下几种方式
+- Package name
+- git urls
+- Aliases
+- Folders
+- Tarballs
 
-
-1. tag, version as dependencies
+1. Package name - tag, version as dependencies
 
 ```shell
+npm install [<@scope>/]<name>
 npm install [<@scope>/]<name>@<tag>
-
 npm install [<@scope>/]<name>@<version>
-
 npm install [<@scope>/]<name>@<version-range>
-
 ```
 
 安装指定标签引用的软件包版本。如果该包的注册表数据中不存在该标签，那么这将失败。
 
 ```shell
-npm install babel@latest
-
+npm install babel
+npm install @npmcli/arborist
+npm install @npmcli/arborist@latest
 npm install vite@4.4.8
-
 npm install vite">=1.0.0 <4.4.8"
 ```
 
-
-2. URL as dependencies - patch-package
+2. git urls - as dependencies - patch-package
 
 > NPM（和yarn）有一个有用的约定，通过指向fork和可选地使用特定分支而不是给它一个版本号来指向项目的package.json依赖项中的git存储库。
 
@@ -132,8 +131,7 @@ npm install bitbucket:<bitbucketname>/<bitbucketrepo>[#<commit-ish>]
 npm install gitlab:<gitlabname>/<gitlabrepo>[#<commit-ish>]
 ```
 
-
-2. alias 别名方式
+3. alias 别名方式
 
 alias方式主要是安装同一个package的多个版本，一般使用场景是用在 **Playground**
 
@@ -158,7 +156,7 @@ npm install react-18@npm:react
 }
 ```
 
-3. folder as dependency
+4. folder as dependency
 
 如果`<folder>`位于项目的根目录中，则将安装其依赖项，并可能像其他类型的依赖项一样被提升到顶级node_modules。如果`<folder>`位于项目的根目录之外，npm将不会在目录`<folder>`中安装软件包依赖项，但它将创建到`<folder>`的符号链接。
 
@@ -180,6 +178,28 @@ npm install ../../yarnPackage --install-links
 }
 ```
 
+5. Tarballs
+
+```shell
+npm install <tarball file>
+npm install <tarball url>
+```
+
+比如：
+
+```shell
+npm install ./my-package.tgz
+npm install https://registry.npmjs.org/semver/-/semver-1.0.0.tgz
+```
+
+指tarball格式的软件包，无论是在本地文件系统上还是通过url远程。这是软件包上传到注册表时存在的格式。
+
+## 安装大小 {/*安装大小*/}
+
+install size 指的是当`npm install <name>`时，真正的安装大小包含name的所有依赖以及间接依赖的大小(递归所有dependencies的总体积)。
+
+在[pkg-size](https://pkg-size.dev/)可以看到所有依赖的安装大小
+
 ## devDependencies {/*devdependencies*/}
 
 <Intro>
@@ -196,11 +216,124 @@ npm install ../../yarnPackage --install-links
 在开发插件时，你的插件需要某些依赖的支持，但是你又没必要去安装，因为插件的宿主会去安装这些依赖。此时就可以用 peerDependencies 去声明一下需要依赖的插件和版本。如果出问题的话，npm 会有警告来提示使用者去解决版本中的冲突。
 </Intro>
 
+比如:
+
+```json
+{
+  name: "project",
+  version: "1.0.0",
+  peerDependencies: {
+    "react": ">= 16.8.0"
+  }
+}
+```
+
+<Note>
+
+在 **v3 v6**版本中，peerDependencies 是不会被主动安装的，并且如果在树中发现无效版本的对等依赖，则会发出警告。
+
+**从npm v7开始，默认安装peerDependencies。**
+
+</Note>
+
+如果无法正确解决树，尝试安装另一个具有冲突要求的插件可能会导致错误。因此，请确保您的插件要求尽可能广泛，并且不要将其锁定到特定的补丁版本。
+
+## peerDependenciesMeta {/*peerdependenciesmeta*/}
+
+当用户安装您的软件包时，如果版本中，peerDependencies 项中指定的软件包尚未安装，npm将发出警告。peerDependenciesMeta字段用于为npm提供有关如何使用当用户安装您的软件包时，如果版本中，peerDependencies项的更多信息。具体来说，它允许将当用户安装您的软件包时，如果版本中，peerDependencies项标记为可选。
+
+比如：
+
+```json
+{
+  "name": "project",
+  "version": "1.0.0",
+  "dependencies": {
+    "tea": "2.x",
+    "axios": "1.2"
+  },
+  "bundleDependencies": {
+    "axios": {
+      "optional": true
+    }
+  }
+}
+```
+
+上述例子中，tea 和 axios 都作为 peerDependencies 项，但是 axios 在 peerDependenciesMeta 指定为可选项，因此，如果宿主环境中没有安装 axios，则不会出现警告提示。
+
+## bundleDependencies {/*bundledependencies*/}
+
+定义了发布npm包时将捆绑的npm包的名称数组。
+
+当您需要在本地保留npm软件包或通过单个文件下载提供它们时，您可以通过在bundleDependencies/bundledDependencies数组中指定软件包名称并执行npm包将软件包捆绑在tarball文件中。
+
+例如在learn npm包中：
+
+```json
+{
+  "name": "learn",
+  "version": "1.0.0",
+  "dev": {
+    "axios": "1.2"
+  },
+  "bundleDependencies": [
+    "babel",
+    "classnames"
+  ],
+}
+```
+
+我们可以通过运行npm包获得awesome-web-framework-1.0.0.tgz文件。此文件包含渲染的依赖项和超级流，可以通过执行npm install awesome-web-framework-1.0.0.tgz安装在新项目中。
+
+在新项目中运行 `npm install ../npm-learn-1.0.0.tgz`, 请注意，软件包名称不包含任何版本，因为该信息是在依赖项中指定的。
+
+新项目的package.json可以看到
+
+```json
+{
+  "dependencies": {
+    "npm-learn": "file:../npm-learn-1.0.0.tgz"
+  }
+}
+```
+在node_modules中可以看到依赖关系
+
+```md
+├── axios
+└── npm-learn
+    ├── node_modules
+        ├── babel
+        ├── classnames
+    ├── src
+    ├── package.json
+```
 
 
+## optionalDependencies {/*optionaldependencies*/}
+
+如果依赖项找不到或安装失败，希望npm继续(由于找不到或者安装失败)，那么您可以将其放在optionalDependencies对象中。
+
+这是软件包名称到版本或url的映射，就像依赖项对象一样。区别在于，构建失败不会导致安装失败。运行`npm install --omit=optional`将阻止安装这些可选依赖项。
+
+<Note>
+
+如果在项目中使用 optionalDependencies 依赖，则需要去判断它是否存在（是否安装成功）
+
+</Note>
 
 
+## 对比 {/*对比*/}
 
+最后总结和对比下上述依赖的使用和安装场景：
+
+
+| dependencies type    | package 开发               | 项目依赖开发               | 总结                                                        |
+| -------------------- | -------------------------- | -------------------------- | ----------------------------------------------------------- |
+| dependencies         | 会被安装                   | 会被安装                   | 定义包运行所需要的依赖包                                    |
+| devDependencies      | 会被安装                   | 不会被安装                 | 定义包在开发时所需要的依赖包                                |
+| peerDependencies     | 会被安装 npm版本决定       | 会被安装 npm版本决定       | 定义该包运行所需要的依赖环境，一和 devDependencies 一起使用 |
+| optionalDependencies | 会被安装，安装失败不会报错 | 会被安装，安装失败不会报错 | optionalDependencies 用于定义对包运行不会造成影响的依赖包   |
 
 
 查看link的包是否成功安装到了本地

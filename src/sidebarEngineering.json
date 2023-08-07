@@ -17,16 +17,16 @@
       "skipBreadcrumb": true,
       "routes": [
         {
-          "title": "npm和package",
-          "path": "/engineering/package/know-npm-package"
-        },
-        {
           "title": "SemverVersion",
           "path": "/engineering/package/semver"
         },
         {
           "title": "dependencies",
           "path": "/engineering/package/dependencies"
+        },
+        {
+          "title": "npm scripts",
+          "path": "/engineering/package/script"
         }
       ]
     },

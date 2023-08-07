@@ -83,7 +83,7 @@ npm unstar react // 移除已经start的git仓库
 **package主要有以下内容：**
 
 - [semver version](/engineering/package/semver): 语义化版本
-- **dependencies**: 开发依赖
+- [dependencies](/engineering/package/dependencies): 依赖
 - **engines**: 指定Node的版本
 - **script**: 指定npm的执行脚本
 
