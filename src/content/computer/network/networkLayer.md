@@ -181,8 +181,15 @@ MAC address = ARP(IP address)
 
 与其对应的一个协议有 **RARP，其功能与ARP相反，通过MAC地址找到对应的IP地址**，现在的 **DHCP协议已经包含了其功能**。
 
+**ARP协议查找MAC地址的方式是在每一个主机ARP高速缓存中存放一个从IP地址到MAC地址的映射表，此映射表经常会更新**。
 
 
+### IP层转发分组的流程 {/*ip层转发分组的流程*/}
 
-https://zhuanlan.zhihu.com/p/470493698
+如下图，三个路由器连接了四个不同的网络，如果**源主机A**传输数据到**目的主机B**，要在这几个网络中进行，那么传输转发的流程如下：
 
+![ip-forwarding-grouping](https://media.wangbaoqi.tech/assets/blog/network/networkLayer/ip-forwarding-grouping.png)
+
+每个路由器都有一个路由表，而路由表存储的信息是 **目的主机所在的网络** 到 **下一跳地址** 的映射。
+
+由于在源主机中可以知道目的主机的IP地址，所以也就知道了目的主机的网络，在不同的路由器之间转发时，如果遇到目的主机所在的网络，则开始进行跳转。
