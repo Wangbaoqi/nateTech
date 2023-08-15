@@ -158,6 +158,7 @@ export async function getStaticProps(context) {
     );
   }
 
+  console.log(mdx, 'mdx s');
   // If we don't add these fake imports, the MDX compiler
   // will insert a bunch of opaque components we can't introspect.
   // This will break the prepareMDX() call below.

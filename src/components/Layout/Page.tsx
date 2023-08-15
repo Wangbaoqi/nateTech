@@ -32,7 +32,6 @@ interface PageProps {
   section:
     | 'engineering'
     | 'computer'
-    | 'reference'
     | 'community'
     | 'blog'
     | 'home'
