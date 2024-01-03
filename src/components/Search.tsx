@@ -1,141 +1,47 @@
-/*
- * Copyright (c) Facebook, Inc. and its affiliates.
- */
+'use client';
+import { Button, Kbd, link } from '@nextui-org/react';
 
-import Head from 'next/head';
-import Link from 'next/link';
-import Router from 'next/router';
-import {lazy, useCallback, useEffect} from 'react';
-import * as React from 'react';
-import {createPortal} from 'react-dom';
-import {siteConfig} from 'siteConfig';
-import cn from 'classnames';
+import { SearchLinearIcon } from '@/components/icons';
+import { useEffect, useState } from 'react';
+import { isAppleDevice } from '@react-aria/utils';
+import { clsx } from '@nextui-org/shared-utils';
 
-export interface SearchProps {
-  appId?: string;
-  apiKey?: string;
-  indexName?: string;
-  searchParameters?: any;
-  isOpen: boolean;
-  onOpen: () => void;
-  onClose: () => void;
+interface SearchProps {
+  className?: string;
 }
+export const Search: React.FC<SearchProps> = ({ className = '' }) => {
+  const [commandKey, setCommandKey] = useState<Array<'ctrl' | 'command'>>([
+    'command'
+  ]);
 
-function Hit({hit, children}: any) {
-  return (
-    <Link href={hit.url.replace()}>
-      <a>{children}</a>
-    </Link>
-  );
-}
-
-// Copy-pasted from @docsearch/react to avoid importing the whole bundle.
-// Slightly trimmed to features we use.
-// (c) Algolia, Inc.
-function isEditingContent(event: any) {
-  var element = event.target;
-  var tagName = element.tagName;
-  return (
-    element.isContentEditable ||
-    tagName === 'INPUT' ||
-    tagName === 'SELECT' ||
-    tagName === 'TEXTAREA'
-  );
-}
-function useDocSearchKeyboardEvents({
-  isOpen,
-  onOpen,
-  onClose,
-}: {
-  isOpen: boolean;
-  onOpen: () => void;
-  onClose: () => void;
-}) {
   useEffect(() => {
-    function onKeyDown(event: any) {
-      function open() {
-        // We check that no other DocSearch modal is showing before opening
-        // another one.
-        if (!document.body.classList.contains('DocSearch--active')) {
-          onOpen();
-        }
-      }
-      if (
-        (event.keyCode === 27 && isOpen) ||
-        (event.key === 'k' && (event.metaKey || event.ctrlKey)) ||
-        (!isEditingContent(event) && event.key === '/' && !isOpen)
-      ) {
-        event.preventDefault();
-        if (isOpen) {
-          onClose();
-        } else if (!document.body.classList.contains('DocSearch--active')) {
-          open();
-        }
-      }
-    }
+    setCommandKey(isAppleDevice() ? ['command'] : ['ctrl']);
+  }, []);
 
-    window.addEventListener('keydown', onKeyDown);
-    return function () {
-      window.removeEventListener('keydown', onKeyDown);
-    };
-  }, [isOpen, onOpen, onClose]);
-}
+  const handleOpenCmdk = () => {};
 
-const options = {
-  appId: siteConfig.algolia.appId,
-  apiKey: siteConfig.algolia.apiKey,
-  indexName: siteConfig.algolia.indexName,
-};
-
-const DocSearchModal: any = lazy(() =>
-  // @ts-ignore
-  import('@docsearch/react/modal').then((mod) => ({
-    default: mod.DocSearchModal,
-  }))
-);
-
-export function Search({
-  isOpen,
-  onOpen,
-  onClose,
-  searchParameters = {
-    hitsPerPage: 5,
-  },
-}: SearchProps) {
-  useDocSearchKeyboardEvents({isOpen, onOpen, onClose});
   return (
-    <>
-      <Head>
-        <link
-          rel="preconnect"
-          href={`https://${options.appId}-dsn.algolia.net`}
+    <Button
+      aria-label='Quick search'
+      className={clsx(
+        'text-sm font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20',
+        className
+      )}
+      endContent={
+        <Kbd className='hidden py-0.5 px-2 lg:inline-block' keys={commandKey}>
+          K
+        </Kbd>
+      }
+      startContent={
+        <SearchLinearIcon
+          className='text-base text-default-400 pointer-events-none flex-shrink-0'
+          size={18}
+          strokeWidth={2}
         />
-      </Head>
-      {isOpen &&
-        createPortal(
-          <DocSearchModal
-            {...options}
-            initialScrollY={window.scrollY}
-            searchParameters={searchParameters}
-            onClose={onClose}
-            navigator={{
-              navigate({itemUrl}: any) {
-                Router.push(itemUrl);
-              },
-            }}
-            transformItems={(items: any[]) => {
-              return items.map((item) => {
-                const url = new URL(item.url);
-                return {
-                  ...item,
-                  url: item.url.replace(url.origin, '').replace('#__next', ''),
-                };
-              });
-            }}
-            hitComponent={Hit}
-          />,
-          document.body
-        )}
-    </>
+      }
+      onPress={handleOpenCmdk}
+    >
+      Quick Search...
+    </Button>
   );
-}
+};

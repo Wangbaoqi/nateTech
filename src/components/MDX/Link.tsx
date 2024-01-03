@@ -1,55 +1,44 @@
-/*
- * Copyright (c) Facebook, Inc. and its affiliates.
- */
+import { ExternalLink } from '../ExternalLink';
+import { clsx } from '@nextui-org/shared-utils';
 
-import {Children, cloneElement} from 'react';
-import NextLink from 'next/link';
-import cn from 'classnames';
+import InnerLink from 'next/link';
+import * as Components from '@nextui-org/react';
 
-import {ExternalLink} from 'components/ExternalLink';
-
-function Link({
+export default function Link({
   href,
   className,
   children,
   ...props
 }: JSX.IntrinsicElements['a']) {
-  const classes =
-    'inline text-link dark:text-link-dark border-b border-link border-opacity-0 hover:border-opacity-100 duration-100 ease-in transition leading-normal';
-  const modifiedChildren = Children.toArray(children).map((child: any) => {
-    if (child.type?.mdxName && child.type?.mdxName === 'inlineCode') {
-      return cloneElement(child, {
-        isLink: true,
-      });
-    }
-    return child;
-  });
-
+  const classes = clsx(
+    'inline-flex items-center text-success-600 dark:text-success-600 border-b',
+    'border-success-600 duration-100 ease-in transition leading-normal no-underline',
+    'hover:opacity-100'
+  );
   if (!href) {
-    // eslint-disable-next-line jsx-a11y/anchor-has-content
     return <a href={href} className={className} {...props} />;
   }
+
   return (
     <>
       {href.startsWith('https://') ? (
-        <ExternalLink href={href} className={cn(classes, className)} {...props}>
-          {modifiedChildren}
-        </ExternalLink>
+        <Components.Link
+          href={href}
+          isExternal
+          showAnchorIcon
+          className={clsx(classes, className)}
+        >
+          {children}
+        </Components.Link>
       ) : href.startsWith('#') ? (
-        // eslint-disable-next-line jsx-a11y/anchor-has-content
-        <a className={cn(classes, className)} href={href} {...props}>
-          {modifiedChildren}
+        <a className={clsx(classes, className)} href={href} {...props}>
+          {children}
         </a>
       ) : (
-        <NextLink href={href}>
-          {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
-          <a className={cn(classes, className)} {...props}>
-            {modifiedChildren}
-          </a>
-        </NextLink>
+        <InnerLink href={href} className={clsx(classes, className)}>
+          {children}
+        </InnerLink>
       )}
     </>
   );
 }
-
-export default Link;
