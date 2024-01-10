@@ -6,9 +6,12 @@ import { algoRoutes } from '@/config/algoConfig';
 import { AlgoList } from '@/components/algoLayout';
 import Image from 'next/image';
 
-export default function Page({ params }: { params: { slug: string[] } }) {
+export default async function Page({ params }: { params: { slug: string[] } }) {
   const slug = params.slug?.join('');
   const pageConf = algoRoutes.find((route) => route.label === slug);
+  const result = await fetch('http://localhost:3000/api/algo');
+
+  console.log(await result.json(), 'plll');
 
   return (
     <>
