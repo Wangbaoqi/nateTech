@@ -1,7 +1,6 @@
 'use client';
 import React, { useCallback, useMemo, useState } from 'react';
 import NextLink from 'next/link';
-
 import {
   Table,
   TableHeader,
@@ -26,7 +25,8 @@ import { allPosts, allAlgos, type Algo, MDX } from 'contentlayer/generated';
 import { ChevronRightLinearIcon, SearchLinearIcon } from '@/components/icons';
 import * as Local from 'contentlayer/source-files';
 import { compareAsc, format } from 'date-fns';
-
+import { useQuery } from '@tanstack/react-query';
+import { fetchAlgoCategories } from '@/lib/github';
 interface AlgoType extends Algo {
   [key: string]:
     | string
@@ -85,7 +85,12 @@ export function AlgoList({ slug }: IAlgoListProps) {
     new Set(INITIAL_VISIBLE_COLUMNS)
   );
 
-  console.log(originList.length, 'originList');
+  const result = useQuery({
+    queryKey: ['algoInfo'],
+    queryFn: () => fetchAlgoCategories
+  });
+
+  console.log(result, 'getAllAlgo');
 
   const typeLists = originList.filter((item) => item.tags?.includes(slug));
 
