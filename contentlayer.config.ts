@@ -46,9 +46,30 @@ export const Algo = defineDocumentType(() => ({
   }
 }));
 
+export const Source = defineDocumentType(() => ({
+  name: 'Source',
+  filePathPattern: `content/source/**/*.mdx`,
+  contentType: 'mdx',
+  fields: {
+    id: { type: 'number', required: true },
+    title: { type: 'string', required: true },
+    date: { type: 'date', required: true },
+    category: { type: 'string', required: true },
+    tags: { type: 'string', required: true },
+    leetCode: { type: 'string', required: true },
+    status: { type: 'string', required: true }
+  },
+  computedFields: {
+    url: {
+      type: 'string',
+      resolve: (post) => `/${post._raw.flattenedPath}`
+    }
+  }
+}));
+
 export default makeSource({
   contentDirPath: 'content',
-  documentTypes: [Post, Algo],
+  documentTypes: [Post, Algo, Source],
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [

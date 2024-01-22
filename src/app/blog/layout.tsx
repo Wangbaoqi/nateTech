@@ -1,10 +1,10 @@
 import { NavBar, PostWrapper } from '@/components/blogLayout';
 import React from 'react';
 
-interface BlogLayoutProp {
+interface LayoutProp {
   children: React.ReactNode;
 }
-export default function BlogLayout({ children }: BlogLayoutProp) {
+export default function BlogLayout({ children }: LayoutProp) {
   return (
     <div className='relative flex flex-col'>
       <NavBar />

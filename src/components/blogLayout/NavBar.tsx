@@ -85,6 +85,18 @@ export const NavBar = () => {
             <NextLink
               className={navLinkClasses}
               color='foreground'
+              data-active={includes(pathname, 'source')}
+              href='/source'
+              onClick={() => handlePressNavbarItem('source', '/source')}
+            >
+              Source
+            </NextLink>
+          </NavbarItem>
+
+          <NavbarItem>
+            <NextLink
+              className={navLinkClasses}
+              color='foreground'
               data-active={includes(pathname, 'project')}
               href='/project'
               onClick={() => handlePressNavbarItem('project', '/project')}
