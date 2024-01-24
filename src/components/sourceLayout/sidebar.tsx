@@ -33,9 +33,7 @@ export const Sidebar = memo(function Sidebar(props: SidebarProps) {
   );
 });
 
-const SidebarDetail = memo(function SidebarDetail(props: {
-  item: sourceRoutesItemType;
-}) {
+function SidebarDetail(props: { item: sourceRoutesItemType }) {
   const { item } = props;
   const pathname = usePathname();
   const isActive = pathname === item.path;
@@ -71,7 +69,7 @@ const SidebarDetail = memo(function SidebarDetail(props: {
       </div>
     </div>
   );
-});
+}
 
 const SidebarItem = memo(function SidebarItem(props: {
   item: sourceRoutesItemType;

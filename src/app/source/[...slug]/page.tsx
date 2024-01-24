@@ -1,4 +1,5 @@
 'use client';
+import { Sidebar } from '@/components/sourceLayout';
 import React from 'react';
 export default function Page({ params }: { params: { slug: string[] } }) {
   const { slug } = params;
