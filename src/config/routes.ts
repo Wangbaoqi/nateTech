@@ -4,8 +4,8 @@ export type sourceRoutesType = {
 };
 
 export type sourceRoutesItemType = {
-  name: string;
-  path?: string;
+  name?: string;
+  path: string;
   collapsed?: boolean;
   icon?: any;
   items?: sourceRoutesItemType[];
@@ -15,63 +15,25 @@ export const sourceRoutes: sourceRoutesType = {
   react: [
     {
       name: 'react',
-      path: '/source/react',
+      path: '/source/react/overview',
       icon: HashLinearIcon
     },
     {
-      name: 'TOPICS',
+      name: 'Components',
+      path: '/source/react/components',
       collapsed: false,
       items: [
         {
-          name: 'react basic',
+          name: 'react function component',
           collapsed: false,
           icon: '',
-          items: [
-            {
-              name: 'react api',
-              path: '/source/react/api2'
-            },
-            {
-              name: 'react api1',
-              path: '/source/react/api1'
-            }
-          ]
-        }
-      ]
-    },
-    {
-      name: 'POPULAR',
-      collapsed: false,
-      items: [
-        {
-          name: 'react basic',
-          collapsed: false,
-          icon: '',
-          items: [
-            {
-              name: 'react api',
-              path: '/source/react/api2'
-            },
-            {
-              name: 'react api1',
-              path: '/source/react/api1'
-            }
-          ]
+          path: '/source/react/components/function'
         },
         {
-          name: 'react basic',
+          name: 'react class component',
           collapsed: false,
           icon: '',
-          items: [
-            {
-              name: 'react api',
-              path: '/source/react/api2'
-            },
-            {
-              name: 'react api1',
-              path: '/source/react/api1'
-            }
-          ]
+          path: '/source/react/components/class'
         }
       ]
     }
