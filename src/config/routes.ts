@@ -1,4 +1,4 @@
-import { HashLinearIcon } from '@/components/icons/linear';
+import { IconPuzzle, IconDiamond, IconReact } from '@/components/icons/';
 export type sourceRoutesType = {
   [key: string]: sourceRoutesItemType[];
 };
@@ -15,25 +15,40 @@ export const sourceRoutes: sourceRoutesType = {
   react: [
     {
       name: 'react',
-      path: '/source/react/overview',
-      icon: HashLinearIcon
+      path: '/docs/react',
+      icon: IconReact
     },
     {
       name: 'Components',
-      path: '/source/react/components',
+      path: '/docs/react/components',
       collapsed: false,
+      icon: IconPuzzle,
       items: [
         {
-          name: 'react function component',
+          name: 'component cycle',
           collapsed: false,
           icon: '',
-          path: '/source/react/components/function'
+          path: '/docs/react/components/lifecycle'
+        }
+      ]
+    },
+    {
+      name: 'Rendering',
+      path: '/docs/react/rendering',
+      collapsed: false,
+      icon: IconPuzzle,
+      items: [
+        {
+          name: 'component cycle',
+          collapsed: false,
+          icon: '',
+          path: '/docs/react/rendering/lifecycle'
         },
         {
-          name: 'react class component',
+          name: 'component cycle',
           collapsed: false,
           icon: '',
-          path: '/source/react/components/class'
+          path: '/docs/react/rendering/lifecycle'
         }
       ]
     }

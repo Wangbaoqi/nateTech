@@ -7,7 +7,7 @@ export default function Source() {
     <div className='px-8 mt-20'>
       <div className='grid gap-y-3 gap-x-10 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3'>
         <NextLink
-          href={'/source/react'}
+          href={'/docs/react'}
           className='group relative rounded-2xl duration-300 sm:min-w-[300px] xl:min-w-[320px]'
         >
           <Card className='py-4' isHoverable>

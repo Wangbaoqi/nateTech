@@ -19,6 +19,8 @@ export function Toc({ headings }: { headings: Heading[] }) {
     }
   );
 
+  if (!headings.length) return null;
+
   return (
     <nav className='mb-8'>
       <h4 className='text-base font-medium mb-4'>Table of Contents</h4>

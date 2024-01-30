@@ -25,8 +25,6 @@ export const Sidebar = memo(function Sidebar(props: SidebarProps) {
 
   const { sidebar, setSidebar } = useSourceSidebar();
 
-  console.log(sidebar, 'slug sidebar');
-
   const sidebarList = useMemo(() => {
     return sourceRoutes[root];
   }, [root]);
@@ -58,11 +56,15 @@ function CollapseWrapper({
   return (
     <div
       className={clsx(
-        'transition duration-300 ease-in-out',
-        isExpanded ? '' : 'hidden'
+        'grid transition-[grid-template-rows] duration-200 ease-in-out',
+        isExpanded ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
       )}
     >
-      <div>{children}</div>
+      <div
+        className={clsx('overflow-hidden border-l-1 border-default-200 ml-5')}
+      >
+        {children}
+      </div>
     </div>
   );
 }
@@ -79,13 +81,7 @@ function SidebarDetail(props: {
 
   return (
     <div className='p-0 m-0 bg-transparent border-none rounded-none'>
-      <section>
-        <SidebarItem
-          item={item}
-          isActive={isActive}
-          isCollapsed={isCollapsed}
-        />
-      </section>
+      <SidebarItem item={item} isActive={isActive} isCollapsed={isCollapsed} />
       <CollapseWrapper duration={100} isExpanded={isCollapsed}>
         {item?.items?.map((item: sourceRoutesItemType, idx: number) => {
           return (
@@ -118,14 +114,10 @@ const SidebarItem = memo(function SidebarItem(props: {
 
   if (item.path) {
     return (
-      <NextLink
-        href={item.path}
-        className={cls}
-        onClick={() => setSidebarExpanded(item.path)}
-      >
+      <NextLink href={item.path} className={cls}>
         <span className='flex  items-center gap-2 min-w-0 shrink'>
           <span className='flex shrink-0 items-center justify-center h-xl w-xl'>
-            {Icon && <Icon size={22} />}
+            {Icon && <Icon size={20} />}
           </span>
           <span className='flex flex-col justify-center min-w-0 shrink '>
             <span className='text-[15px]'>
@@ -134,7 +126,10 @@ const SidebarItem = memo(function SidebarItem(props: {
           </span>
         </span>
         {item.items ? (
-          <span className='flex items-center shrink-0'>
+          <span
+            className='flex items-center shrink-0'
+            onClick={() => setSidebarExpanded(item.path)}
+          >
             <ChevronRightLinearIcon className={arrowClsx} size={18} />
           </span>
         ) : null}
@@ -145,17 +140,20 @@ const SidebarItem = memo(function SidebarItem(props: {
     <div className={cls}>
       <span className='flex items-center gap-2 min-w-0 shrink'>
         <span className='flex shrink-0 items-center justify-center h-xl w-xl'>
-          {Icon && <Icon size={22} />}
+          {Icon && <Icon size={20} />}
         </span>
         <span className='flex flex-col justify-center min-w-0 shrink '>
           <span className='text-[15px] text-default-500'>
-            <p className=' truncate'>{item.name}</p>
+            <p className='truncate'>{item.name}</p>
           </span>
         </span>
       </span>
       {item.items ? (
-        <span className='flex items-center shrink-0'>
-          <ChevronRightLinearIcon className='rotate-90' size={18} />
+        <span
+          className='flex items-center shrink-0'
+          onClick={() => setSidebarExpanded(item.path)}
+        >
+          <ChevronRightLinearIcon className={arrowClsx} size={18} />
         </span>
       ) : null}
     </div>

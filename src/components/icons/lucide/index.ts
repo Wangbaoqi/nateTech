@@ -4,3 +4,4 @@ export * from './RectangleVertical';
 export * from './Circle';
 export * from './Diamond';
 export * from './Plus';
+export * from './Puzzle';

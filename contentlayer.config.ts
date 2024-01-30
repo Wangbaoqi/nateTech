@@ -46,18 +46,15 @@ export const Algo = defineDocumentType(() => ({
   }
 }));
 
-export const Source = defineDocumentType(() => ({
-  name: 'Source',
-  filePathPattern: `content/source/**/*.mdx`,
+export const Docs = defineDocumentType(() => ({
+  name: 'Docs',
+  filePathPattern: `content/docs/**/*.mdx`,
   contentType: 'mdx',
   fields: {
-    id: { type: 'number', required: true },
     title: { type: 'string', required: true },
     date: { type: 'date', required: true },
     category: { type: 'string', required: true },
-    tags: { type: 'string', required: true },
-    leetCode: { type: 'string', required: true },
-    status: { type: 'string', required: true }
+    tags: { type: 'string', required: true }
   },
   computedFields: {
     url: {
@@ -69,7 +66,7 @@ export const Source = defineDocumentType(() => ({
 
 export default makeSource({
   contentDirPath: 'content',
-  documentTypes: [Post, Algo, Source],
+  documentTypes: [Post, Algo, Docs],
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [

@@ -12,8 +12,6 @@ export function useScrollSpy(
       document.querySelector(selector)
     );
 
-    console.log(elements, 'elements');
-
     if (observer.current) observer.current.disconnect();
 
     observer.current = new IntersectionObserver((entries) => {
