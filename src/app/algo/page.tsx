@@ -1,7 +1,8 @@
+// 'use client';
 import React from 'react';
 import { AlgoCard, AlgoDataCard, SideBar } from '@/components/algoLayout';
 
-export default function AlgoPage() {
+export default async function AlgoPage() {
   return (
     <>
       <main className='flex items-stretch gap-2 h-screen p-2'>

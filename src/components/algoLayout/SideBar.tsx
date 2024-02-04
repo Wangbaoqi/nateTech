@@ -119,12 +119,12 @@ export const SideBar = () => {
               <NextLink
                 className={navLinkClasses}
                 color='foreground'
-                data-active={includes(pathname, 'blog')}
-                href='/blog'
-                onClick={() => handlePressNavbarItem('Blog', '/blog')}
+                data-active={includes(pathname, 'tags')}
+                href='/tags'
+                onClick={() => handlePressNavbarItem('Blog', '/tags')}
               >
                 <FileTrayFullLinearIcon />
-                Blog
+                Tags
               </NextLink>
             </NavbarItem>
             <NavbarItem>

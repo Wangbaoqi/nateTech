@@ -10,6 +10,9 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
   const slug = params.slug?.join('');
   const pageConf = algoRoutes.find((route) => route.label === slug);
 
+  // const res = await fetch('http://localhost:3000/algo/LinkList/api');
+  // const data = await res.json();
+
   return (
     <>
       <section

@@ -26,16 +26,17 @@ import { ChevronRightLinearIcon, SearchLinearIcon } from '@/components/icons';
 import * as Local from 'contentlayer/source-files';
 import { compareAsc, format } from 'date-fns';
 import { useQuery } from '@tanstack/react-query';
-import { fetchAlgoCategories } from '@/lib/github';
-interface AlgoType extends Algo {
-  [key: string]:
-    | string
-    | number
-    | string[]
-    | MDX
-    | Local.RawDocumentData
-    | undefined;
-}
+
+// interface AlgoType extends Algo {
+//   [key: string]:
+//     | string
+//     | number
+//     | string[]
+//     | MDX
+//     | Local.RawDocumentData
+//     | undefined;
+// }
+
 interface AlgoStatusType {
   [key: string]:
     | 'success'
@@ -51,7 +52,9 @@ interface IAlgoListProps {
   slug: string;
 }
 
-const originList: AlgoType[] = allAlgos;
+const originList = allAlgos;
+
+// console.log(allAlgos[0], 'allAlgos');
 
 const statusOptions = [
   { name: 'Easy', uid: 'easy' },
@@ -77,20 +80,13 @@ const INITIAL_VISIBLE_COLUMNS = ['id', 'title', 'date', 'status', 'leetCode'];
 
 export function AlgoList({ slug }: IAlgoListProps) {
   const [page, setPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
   const [filterValue, setFilterValue] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [selectedKeys, setSelectedKeys] = useState(new Set([]));
   const [visibleColumns, setVisibleColumns] = React.useState(
     new Set(INITIAL_VISIBLE_COLUMNS)
   );
-
-  const result = useQuery({
-    queryKey: ['algoInfo'],
-    queryFn: () => fetchAlgoCategories
-  });
-
-  console.log(result, 'getAllAlgo');
 
   const typeLists = originList.filter((item) => item.tags?.includes(slug));
 
@@ -130,8 +126,8 @@ export function AlgoList({ slug }: IAlgoListProps) {
 
   const sortedItems = React.useMemo(() => {
     return [...items].sort((a, b) => {
-      const first = sortDescriptor.column ? a[sortDescriptor.column] : 0;
-      const second = sortDescriptor.column ? b[sortDescriptor.column] : 1;
+      const first = sortDescriptor.column ? a[sortDescriptor.column] || 0 : 0;
+      const second = sortDescriptor.column ? b[sortDescriptor.column] || 0 : 1;
       const cmp = first < second ? -1 : first > second ? 1 : 0;
 
       return sortDescriptor.direction === 'descending' ? -cmp : cmp;
@@ -299,7 +295,7 @@ export function AlgoList({ slug }: IAlgoListProps) {
       bottomContent={bottomContent}
       bottomContentPlacement='outside'
       classNames={{
-        wrapper: 'max-h-[382px] bg-content1/30 '
+        wrapper: 'bg-content1/30 '
       }}
       sortDescriptor={sortDescriptor}
       topContent={topContent}
