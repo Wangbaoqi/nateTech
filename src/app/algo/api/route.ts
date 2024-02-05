@@ -1,7 +1,7 @@
 import fs from 'fs';
 import { bundleMDX } from 'mdx-bundler';
 
-import { fetchAlgoContentByType, fetchAlgoDir } from '@/lib/github';
+import { fetchAlgoContentByType, fetchAlgoListByType } from '@/lib/github';
 
 async function handleMdxFileJson(content = '') {
   const { code, frontmatter } = await bundleMDX({
@@ -9,24 +9,22 @@ async function handleMdxFileJson(content = '') {
   });
 
   return {
-    code,
-    frontmatter
+    // code,
+    ...frontmatter
   };
 }
 
-export async function GET(request: Request, context: any) {
-  // const team = params.team // '1'
+interface IContext {
+  params: {
+    slug: string[];
+  };
+}
 
-  const content = await fetchAlgoDir();
+export async function GET(request: Request, context: IContext) {
+  const type = context.params.slug.join('');
+  const list = await fetchAlgoListByType(type);
 
-  const jsonList = [];
+  console.log(list, 'api');
 
-  for (const item of content?.list) {
-    const object = await handleMdxFileJson(item);
-    jsonList.push(object);
-  }
-
-  console.log(jsonList, 'api');
-
-  return Response.json({ text: content });
+  return Response.json({ data: list });
 }

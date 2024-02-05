@@ -1,5 +1,15 @@
 import { Octokit } from 'octokit';
+import { Endpoints, OctokitResponse } from '@octokit/types';
 import fs from 'fs-extra';
+import { bundleMDX } from 'mdx-bundler';
+
+type ReposParameters = Endpoints['GET /repos/{owner}/{repo}']['parameters'];
+type ContentReposParameters =
+  Endpoints['GET /repos/{owner}/{repo}/contents/{path}']['parameters'];
+type ContentReposResponse =
+  Endpoints['GET /repos/{owner}/{repo}/contents/{path}']['response'];
+
+type ReposData = ContentReposResponse['data'];
 
 const octokit = new Octokit({
   auth: process.env.GITHUB_AUTH
@@ -23,11 +33,8 @@ export const fetchAlgoContentByType = async () => {
       }
     );
 
-    // console.log(data, 'data octokit');
-
     const content = Buffer.from(data?.content, 'base64').toString('utf-8');
 
-    // console.log('frontmatter Content:', content);
     return Promise.resolve(content);
   } catch (error) {
     console.log(error, 'error');
@@ -58,35 +65,52 @@ async function getFileContent(
 async function processFiles(
   owner = 'Wangbaoqi',
   repo = 'leetCode',
-  filePaths = ''
+  filePaths: string[] = []
 ) {
   const list = [];
   for (const filePath of filePaths) {
     const content = await getFileContent(owner, repo, filePath);
-    list.push(content);
+    const { code, frontmatter } = await bundleMDX({
+      source: content || ''
+    });
+
+    list.push({
+      name: filePath.split('/').pop(),
+      path: filePath,
+      ...frontmatter
+    });
   }
-  console.log(list.length, 'listLength');
 
   return list;
 }
 
-export const fetchAlgoDir = async () => {
+/**
+ * Fetches a list of algorithms by type.
+ *
+ * @param {string} type - the type of algorithm
+ * @return {Promise<{ list: any[] }>} a promise that resolves to an object containing a list of algorithms
+ */
+export const fetchAlgoListByType = async (
+  type: string
+): Promise<{ list: any[] }> => {
   try {
     const { data } = await octokit.rest.repos.getContent({
       owner: 'Wangbaoqi',
       repo: 'leetCode',
-      path: 'src/LinkList'
+      path: 'linklist'
     });
 
-    const files = data?.filter((item) => item.type === 'file');
-    const directories = data.filter((item) => item.type === 'dir');
+    if (!Array.isArray(data)) {
+      return { list: [] };
+    }
 
+    const directories = data.filter((item) => item.type === 'dir');
     const paths = directories.map((dir) => dir.path);
     const list = await processFiles('Wangbaoqi', 'leetCode', paths);
-    console.log(list, 'jsonlist');
 
-    return Promise.resolve({ list });
+    return { list };
   } catch (error) {
-    console.log(error, 'error');
+    console.error(error);
+    return { list: [] };
   }
 };

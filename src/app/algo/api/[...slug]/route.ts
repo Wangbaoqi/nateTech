@@ -1,7 +1,6 @@
 import fs from 'fs';
-import { bundleMDX } from 'mdx-bundler';
 
-import { fetchAlgoContentByType, fetchAlgoDir } from '@/lib/github';
+import { fetchAlgoContentByType, fetchAlgoListByType } from '@/lib/github';
 
 interface IContext {
   params: {
@@ -10,19 +9,13 @@ interface IContext {
 }
 
 export async function GET(request: Request, context: IContext) {
-  // const team = params.team // '1'
-
   const type = context.params.slug.join('');
 
-  // console.log(context, 'context');
+  console.log(type, 'type params');
 
-  const content = await fetchAlgoContentByType();
+  const list = await fetchAlgoListByType(type);
 
-  const { code, frontmatter } = await bundleMDX({
-    source: content || ''
-  });
+  console.log(list, 'api');
 
-  // console.log(code, frontmatter, 'api');
-
-  return Response.json({ text: content });
+  return Response.json({ data: list });
 }
