@@ -33,7 +33,11 @@ import { usePathname } from 'next/navigation';
 import { useIsMounted } from '@/hooks/useIsMount';
 import { includes } from 'lodash';
 
-export const NavBar = () => {
+interface INavBar {
+  width?: 'xl' | 'lg' | 'md' | 'sm' | '2xl' | 'full' | undefined;
+}
+
+export const NavBar = ({ width = 'xl' }: INavBar) => {
   const pathname = usePathname();
 
   const navLinkClasses = clsx(
@@ -46,9 +50,9 @@ export const NavBar = () => {
 
   return (
     <NextUINavbar
-      maxWidth='lg'
+      maxWidth={width}
       position='sticky'
-      className='[&>header]:max-w-5.5xl'
+      // className={`[&>header]:max-w-7xl`}
     >
       <NavbarContent className='basis-1/5 sm:basis-full' justify='start'>
         <NavbarBrand as='li' className='gap-1 max-w-fit mr-4'>

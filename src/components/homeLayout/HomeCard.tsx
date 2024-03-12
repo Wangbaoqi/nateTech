@@ -49,7 +49,7 @@ export function HomeCard({ title, tag, redirectRoute }: HomeCardProps) {
     );
   return (
     <div>
-      <div className='max-w-5.5xl mx-auto flex items-center justify-between gap-3 px-6 pt-5'>
+      <div className='max-w-7xl mx-auto flex items-center justify-between gap-3 px-10 pt-5'>
         <h2
           className={`relative text-3xl font-bold tracking-tight ${TITLES_BY_TAG[tag]}`}
         >

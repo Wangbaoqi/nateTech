@@ -18,11 +18,11 @@ export default function Page({ params }: { params: { slug: string[] } }) {
   if (!post) notFound();
 
   return (
-    <main className='relative flex-[0_1_780px] max-w-[780px]'>
-      <article className=' relative  px-2 prose prose-neutral text-default-700 text-[15px]'>
+    <main className='relative flex flex-[0_1_1250px] max-w-[1250px]'>
+      <article className='relative flex-1 px-10 prose prose-neutral text-default-700 text-[15px]'>
         <MDXContent code={post.body.code} />
       </article>
-      <section className='absolute -right-[260px] top-0 lg:w-[250px]'>
+      <section className='sticky top-0 lg:w-[250px]'>
         <Toc headings={tocList} />
       </section>
     </main>

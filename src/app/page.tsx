@@ -21,7 +21,7 @@ export default function Home() {
     <div className='relative flex flex-col'>
       <NavBar />
       <div className='mt-10'>
-        <div className='container flex-grow mx-auto max-w-5.5xl px-6 flex justify-center'>
+        <div className='container flex-grow mx-auto max-w-6xl px-6 flex justify-center'>
           <a
             href=''
             target='_blank'

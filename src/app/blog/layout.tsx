@@ -8,7 +8,7 @@ export default function BlogLayout({ children }: LayoutProp) {
   return (
     <div className='relative flex flex-col'>
       <NavBar />
-      <div className='container mx-auto max-w-5.5xl flex-grow'>{children}</div>
+      <div className='container mx-auto max-w-6xl flex-grow'>{children}</div>
     </div>
   );
 }

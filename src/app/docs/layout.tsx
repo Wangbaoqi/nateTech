@@ -13,11 +13,11 @@ export default function Layout({ children }: LayoutProp) {
   const [, , slug] = pathname?.split('/');
 
   return (
-    <div className='relative flex flex-col'>
-      <NavBar />
-      <div className='container mx-auto max-w-5.5xl pt-5 px-7'>
-        <div className='relative flex  justify-center w-full'>
-          <aside className='hidden lg:block flex-[0_10000_240px] sticky top-0 h-[calc(100vh-194px)] mr-auto overflow-auto pb-4'>
+    <div className='relative flex flex-col max-w'>
+      <NavBar width='2xl' />
+      <div className='container mx-auto max-w-[1536px] pt-5 px-7'>
+        <div className='relative flex justify-center w-full'>
+          <aside className='hidden xl:block flex-[0_10000_240px] sticky top-0 h-[calc(100vh-194px)] mr-auto overflow-auto pb-4'>
             <Sidebar slug={[slug]} />
           </aside>
           {children}
