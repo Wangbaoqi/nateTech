@@ -42,7 +42,7 @@ export const sourceRoutes: sourceRoutesType = {
           name: 'component cycle',
           collapsed: false,
           icon: '',
-          path: '/docs/react/components/lifecycle'
+          path: '/docs/react/components'
         }
       ]
     },
@@ -56,195 +56,190 @@ export const sourceRoutes: sourceRoutesType = {
           name: 'component cycle',
           collapsed: false,
           icon: '',
-          path: '/docs/react/rendering/lifecycle'
-        },
-        {
-          name: 'component cycle',
-          collapsed: false,
-          icon: '',
-          path: '/docs/react/rendering/lifecycle'
-        }
-      ]
-    },
-    {
-      name: 'Hooks',
-      path: '/docs/react/hooks',
-      collapsed: false,
-      icon: IconWebHook,
-      items: [
-        {
-          name: 'component cycle',
-          collapsed: false,
-          icon: '',
-          path: '/docs/react/rendering/lifecycle'
-        },
-        {
-          name: 'component cycle',
-          collapsed: false,
-          icon: '',
-          path: '/docs/react/rendering/lifecycle'
-        }
-      ]
-    },
-    {
-      name: 'Routers',
-      path: '/docs/react/Routers',
-      collapsed: false,
-      icon: IconRoute,
-      items: [
-        {
-          name: 'component cycle',
-          collapsed: false,
-          icon: '',
-          path: '/docs/react/rendering/lifecycle'
-        },
-        {
-          name: 'component cycle',
-          collapsed: false,
-          icon: '',
-          path: '/docs/react/rendering/lifecycle'
-        }
-      ]
-    },
-    {
-      name: 'State Management',
-      path: '/docs/react/Routers',
-      collapsed: false,
-      icon: IconOrbit,
-      items: [
-        {
-          name: 'component cycle',
-          collapsed: false,
-          icon: '',
-          path: '/docs/react/rendering/lifecycle'
-        },
-        {
-          name: 'component cycle',
-          collapsed: false,
-          icon: '',
-          path: '/docs/react/rendering/lifecycle'
-        }
-      ]
-    },
-    {
-      name: 'Styling',
-      path: '/docs/react/styling',
-      collapsed: false,
-      icon: IconPuzzle,
-      items: [
-        {
-          name: 'component cycle',
-          collapsed: false,
-          icon: '',
-          path: '/docs/react/rendering/lifecycle'
-        },
-        {
-          name: 'component cycle',
-          collapsed: false,
-          icon: '',
-          path: '/docs/react/rendering/lifecycle'
-        }
-      ]
-    },
-    {
-      name: 'API Calls',
-      path: '/docs/react/api',
-      collapsed: false,
-      icon: IconWaypoints,
-      items: [
-        {
-          name: 'component cycle',
-          collapsed: false,
-          icon: '',
-          path: '/docs/react/rendering/lifecycle'
-        },
-        {
-          name: 'component cycle',
-          collapsed: false,
-          icon: '',
-          path: '/docs/react/rendering/lifecycle'
-        }
-      ]
-    },
-    {
-      name: 'Testing',
-      path: '/docs/react/testing',
-      collapsed: false,
-      icon: IconBugPlay,
-      items: [
-        {
-          name: 'component cycle',
-          collapsed: false,
-          icon: '',
-          path: '/docs/react/rendering/lifecycle'
-        },
-        {
-          name: 'component cycle',
-          collapsed: false,
-          icon: '',
-          path: '/docs/react/rendering/lifecycle'
-        }
-      ]
-    },
-    {
-      name: 'Frameworks',
-      path: '/docs/react/frameworks',
-      collapsed: false,
-      icon: IconFrame,
-      items: [
-        {
-          name: 'component cycle',
-          collapsed: false,
-          icon: '',
-          path: '/docs/react/rendering/lifecycle'
-        },
-        {
-          name: 'component cycle',
-          collapsed: false,
-          icon: '',
-          path: '/docs/react/rendering/lifecycle'
-        }
-      ]
-    },
-    {
-      name: 'Advanced Topics',
-      path: '/docs/react/topics',
-      collapsed: false,
-      icon: IconCombine,
-      items: [
-        {
-          name: 'Form',
-          collapsed: false,
-          icon: IconFormInput,
-          path: '/docs/react/rendering/lifecycle'
-        },
-        {
-          name: 'component cycle',
-          collapsed: false,
-          icon: '',
-          path: '/docs/react/rendering/lifecycle'
-        }
-      ]
-    },
-    {
-      name: 'SourceCode Series',
-      path: '/docs/react/source',
-      collapsed: false,
-      icon: IconCodeSquare,
-      items: [
-        {
-          name: 'Form',
-          collapsed: false,
-          icon: IconFormInput,
-          path: '/docs/react/rendering/lifecycle'
-        },
-        {
-          name: 'component cycle',
-          collapsed: false,
-          icon: '',
-          path: '/docs/react/rendering/lifecycle'
+          path: '/docs/react/rendering'
         }
       ]
     }
+
+    // {
+    //   name: 'Hooks',
+    //   path: '/docs/react/hooks',
+    //   collapsed: false,
+    //   icon: IconWebHook,
+    //   items: [
+    //     {
+    //       name: 'component cycle',
+    //       collapsed: false,
+    //       icon: '',
+    //       path: '/docs/react/rendering/lifecycle'
+    //     },
+    //     {
+    //       name: 'component cycle',
+    //       collapsed: false,
+    //       icon: '',
+    //       path: '/docs/react/rendering/lifecycle'
+    //     }
+    //   ]
+    // },
+    // {
+    //   name: 'Routers',
+    //   path: '/docs/react/Routers',
+    //   collapsed: false,
+    //   icon: IconRoute,
+    //   items: [
+    //     {
+    //       name: 'component cycle',
+    //       collapsed: false,
+    //       icon: '',
+    //       path: '/docs/react/rendering/lifecycle'
+    //     },
+    //     {
+    //       name: 'component cycle',
+    //       collapsed: false,
+    //       icon: '',
+    //       path: '/docs/react/rendering/lifecycle'
+    //     }
+    //   ]
+    // },
+    // {
+    //   name: 'State Management',
+    //   path: '/docs/react/Routers',
+    //   collapsed: false,
+    //   icon: IconOrbit,
+    //   items: [
+    //     {
+    //       name: 'component cycle',
+    //       collapsed: false,
+    //       icon: '',
+    //       path: '/docs/react/rendering/lifecycle'
+    //     },
+    //     {
+    //       name: 'component cycle',
+    //       collapsed: false,
+    //       icon: '',
+    //       path: '/docs/react/rendering/lifecycle'
+    //     }
+    //   ]
+    // },
+    // {
+    //   name: 'Styling',
+    //   path: '/docs/react/styling',
+    //   collapsed: false,
+    //   icon: IconPuzzle,
+    //   items: [
+    //     {
+    //       name: 'component cycle',
+    //       collapsed: false,
+    //       icon: '',
+    //       path: '/docs/react/rendering/lifecycle'
+    //     },
+    //     {
+    //       name: 'component cycle',
+    //       collapsed: false,
+    //       icon: '',
+    //       path: '/docs/react/rendering/lifecycle'
+    //     }
+    //   ]
+    // },
+    // {
+    //   name: 'API Calls',
+    //   path: '/docs/react/api',
+    //   collapsed: false,
+    //   icon: IconWaypoints,
+    //   items: [
+    //     {
+    //       name: 'component cycle',
+    //       collapsed: false,
+    //       icon: '',
+    //       path: '/docs/react/rendering/lifecycle'
+    //     },
+    //     {
+    //       name: 'component cycle',
+    //       collapsed: false,
+    //       icon: '',
+    //       path: '/docs/react/rendering/lifecycle'
+    //     }
+    //   ]
+    // },
+    // {
+    //   name: 'Testing',
+    //   path: '/docs/react/testing',
+    //   collapsed: false,
+    //   icon: IconBugPlay,
+    //   items: [
+    //     {
+    //       name: 'component cycle',
+    //       collapsed: false,
+    //       icon: '',
+    //       path: '/docs/react/rendering/lifecycle'
+    //     },
+    //     {
+    //       name: 'component cycle',
+    //       collapsed: false,
+    //       icon: '',
+    //       path: '/docs/react/rendering/lifecycle'
+    //     }
+    //   ]
+    // },
+    // {
+    //   name: 'Frameworks',
+    //   path: '/docs/react/frameworks',
+    //   collapsed: false,
+    //   icon: IconFrame,
+    //   items: [
+    //     {
+    //       name: 'component cycle',
+    //       collapsed: false,
+    //       icon: '',
+    //       path: '/docs/react/rendering/lifecycle'
+    //     },
+    //     {
+    //       name: 'component cycle',
+    //       collapsed: false,
+    //       icon: '',
+    //       path: '/docs/react/rendering/lifecycle'
+    //     }
+    //   ]
+    // },
+    // {
+    //   name: 'Advanced Topics',
+    //   path: '/docs/react/topics',
+    //   collapsed: false,
+    //   icon: IconCombine,
+    //   items: [
+    //     {
+    //       name: 'Form',
+    //       collapsed: false,
+    //       icon: IconFormInput,
+    //       path: '/docs/react/rendering/lifecycle'
+    //     },
+    //     {
+    //       name: 'component cycle',
+    //       collapsed: false,
+    //       icon: '',
+    //       path: '/docs/react/rendering/lifecycle'
+    //     }
+    //   ]
+    // },
+    // {
+    //   name: 'SourceCode Series',
+    //   path: '/docs/react/source',
+    //   collapsed: false,
+    //   icon: IconCodeSquare,
+    //   items: [
+    //     {
+    //       name: 'Form',
+    //       collapsed: false,
+    //       icon: IconFormInput,
+    //       path: '/docs/react/rendering/lifecycle'
+    //     },
+    //     {
+    //       name: 'component cycle',
+    //       collapsed: false,
+    //       icon: '',
+    //       path: '/docs/react/rendering/lifecycle'
+    //     }
+    //   ]
+    // }
   ]
 };

@@ -6,7 +6,7 @@ import {
 } from 'contentlayer/generated';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { notFound } from 'next/navigation';
-import MDXContent from '@/components/mdx/MDXContent';
+import MDXContent from '@/components/MDX/MDXContent';
 import { getHeadings } from '@/lib/docs/utils';
 import { clsx } from '@nextui-org/shared-utils';
 import { Toc } from '@/components/blogLayout';

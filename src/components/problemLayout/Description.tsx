@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { type Algo } from 'contentlayer/generated';
-import MDXContent from '@/components/mdx/MDXContent';
+import MDXContent from '@/components/MDX/MDXContent';
 import { format } from 'date-fns';
 import { DifficultyBadge } from '@/components/homeLayout/CategoryBadge';
 import { Link } from '@nextui-org/react';

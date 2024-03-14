@@ -2,7 +2,6 @@ import React from 'react';
 
 // import { MDXComponents } from '@/components/mdx';
 import { bundleMDX } from 'mdx-bundler';
-import MDXContent from '@/components/mdx/MDXContent';
 
 export default async function RemoteMdxPage() {
   // const res = await fetch('http://localhost:3000/algo/api');
