@@ -4,8 +4,6 @@ import { Language } from 'prism-react-renderer';
 import { clsx } from '@nextui-org/shared-utils';
 import ExpandableCallout from './ExpandableCallout';
 import Link from './Link';
-import Sandpack from './Sandpack';
-import NextImage from 'next/image';
 
 import { VirtualAnchor, virtualAnchorEncode } from '@/components';
 // import { Image as NextImage } from '@nextui-org/react';
