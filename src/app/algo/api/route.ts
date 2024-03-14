@@ -21,10 +21,11 @@ interface IContext {
 }
 
 export async function GET(request: Request, context: IContext) {
-  const type = context.params.slug.join('');
-  const list = await fetchAlgoListByType(type);
+  try {
+    // const list = await fetchAlgoListByType('');
 
-  console.log(list, 'api');
-
-  return Response.json({ data: list });
+    return Response.json({ data: [] });
+  } catch (error) {
+    console.error(error, 'get algo index list error');
+  }
 }

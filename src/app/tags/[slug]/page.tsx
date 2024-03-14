@@ -22,8 +22,6 @@ export function generateStaticParams() {
 export default function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;
 
-  console.log(slug, 'slug');
-
   const posts = allPosts.filter(
     (post) => post.category.toLowerCase() === slug.toLowerCase()
   );
