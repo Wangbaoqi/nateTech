@@ -28,16 +28,16 @@ export default function Page({ params }: { params: { slug: string } }) {
   if (!posts) notFound();
 
   return (
-    <div className='max-w-5.5xl mx-auto px-6'>
+    <div className='max-w-7xl mx-auto px-8'>
       <h3 className='text-3xl font-medium m-12 flex justify-center'>
         {slug.toUpperCase()}
       </h3>
-      <section className='flex flex-wrap justify-start gap-6'>
+      <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
         {posts.map((post, idx) => (
           <NextLink
             key={idx}
             href={post.url}
-            className='group block w-[95%] focus:outline-none sm:w-[330px] xl:w-[333px]'
+            className='group block focus:outline-none '
           >
             <FeatureBlogCard blog={post} />
           </NextLink>

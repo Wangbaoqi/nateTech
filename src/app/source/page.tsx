@@ -1,63 +1,64 @@
+'use client';
 import React from 'react';
 import { Card, CardHeader, CardBody, Image } from '@nextui-org/react';
+import { HoverEffect } from '@/components/aceternity';
 import NextLink from 'next/link';
+import {
+  GlowingStarsBackgroundCard,
+  GlowingStarsDescription,
+  GlowingStarsTitle
+} from '@/components/aceternity';
+import { ArrowRightIcon } from '@/components/icons';
 
 export default function Source() {
+  const list = [
+    {
+      title: 'React Roadmap',
+      description: 'react 源码解析系列',
+      link: '/docs/react',
+      chapter: '12章'
+    },
+    {
+      title: 'React Router源码系列',
+      description: 'React Router 源码解析系列',
+      link: '/docs/react',
+      chapter: '12'
+    },
+    {
+      title: 'React Redux源码系列',
+      description: 'React Redux源码解析系列',
+      link: '/docs/react',
+      chapter: '12'
+    },
+    {
+      title: 'Lodash 源码系列',
+      description: 'lodash源码解析系列',
+      link: '/docs/react',
+      chapter: '12'
+    }
+  ];
   return (
-    <div className='px-8 mt-20'>
-      <div className='grid gap-y-3 gap-x-10 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3'>
-        <NextLink
-          href={'/docs/react'}
-          className='group relative rounded-2xl duration-300 sm:min-w-[300px] xl:min-w-[320px]'
-        >
-          <Card className='py-4' isHoverable>
-            <CardHeader className='pb-0 pt-2 px-4 flex-col items-start'>
-              <p className='text-tiny uppercase font-bold'>REACT SOURCE</p>
-              <small className='text-default-500 my-2'>12 Chapters</small>
-              <h4 className='font-bold text-large'>React 源码系列</h4>
-            </CardHeader>
-            <CardBody className='overflow-visible py-2'>
-              <Image
-                alt='Card background'
-                className='object-cover h-[200px] rounded-xl'
-                src='/cover/tree3.png'
-                width='100%'
-              />
-            </CardBody>
-          </Card>
-        </NextLink>
-
-        <Card className='py-4'>
-          <CardHeader className='pb-0 pt-2 px-4 flex-col items-start'>
-            <p className='text-tiny uppercase font-bold'>Daily Mix</p>
-            <small className='text-default-500'>12 Tracks</small>
-            <h4 className='font-bold text-large'>Frontend Radio</h4>
-          </CardHeader>
-          <CardBody className='overflow-visible py-2'>
-            <Image
-              alt='Card background'
-              className='object-cover h-[200px] rounded-xl'
-              src='/cover/tree3.png'
-              width='100%'
-            />
-          </CardBody>
-        </Card>
-
-        <Card className='py-4'>
-          <CardHeader className='pb-0 pt-2 px-4 flex-col items-start'>
-            <p className='text-tiny uppercase font-bold'>Daily Mix</p>
-            <small className='text-default-500'>12 Tracks</small>
-            <h4 className='font-bold text-large'>Frontend Radio</h4>
-          </CardHeader>
-          <CardBody className='overflow-visible py-2'>
-            <Image
-              alt='Card background'
-              className='object-cover h-[200px] rounded-xl'
-              src='/cover/tree3.png'
-              width='100%'
-            />
-          </CardBody>
-        </Card>
+    <div className='px-8 mt-10'>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 py-10 gap-4 antialiased'>
+        {list.map((item, idx) => (
+          <GlowingStarsBackgroundCard key={`${item.title}-${idx}`}>
+            <NextLink
+              href={item?.link}
+              key={item?.link}
+              className='relative group block p-2 h-full w-full'
+            >
+              <GlowingStarsTitle>{item.title}</GlowingStarsTitle>
+              <div className='flex justify-between items-end'>
+                <GlowingStarsDescription>
+                  {item.description}
+                </GlowingStarsDescription>
+                <div className='h-8 w-8 rounded-full bg-default-100 flex items-center justify-center'>
+                  <ArrowRightIcon size={18} />
+                </div>
+              </div>
+            </NextLink>
+          </GlowingStarsBackgroundCard>
+        ))}
       </div>
     </div>
   );

@@ -11,11 +11,32 @@ tags:
 category: Network
 ---
 
+
+
 `HTTP`(HyperText Transfer Protocol) is a `stateless(无状态)` application-level `request/response` protocol that uses **extensible semantics(可扩展语义)** and **self-descriptive(自描述)** message payloads for flexible interaction with network-based **hypertext information** systems. - from **RTC7230**。
 
 `HTTP`是一种能够获取HTML这样的网络资源的通讯协议。是web上进行数据交换的基础，是一种`client-server`协议。
 
 `HTTP`是应用层的协议，通过TCP或者TLS(加密的TCP)连接来发送信息，不仅用来传输超文本文档，也可以传输图片、视频，也可以部分文档内容更新网页。
+
+
+996年，HTTP的下一个版本，即HTTP/1.0的演变比原始版本有了很大的改进。
+
+与仅为HTML响应设计的HTTP/0.9不同，HTTP/1.0现在可以处理其他响应格式，即图像、视频文件、纯文本或任何其他内容类型。它添加了更多方法（即POST和HEAD），更改了请求/响应格式，将HTTP标头添加到请求和响应中，添加了状态代码以识别响应，引入了字符集支持，包括多部分类型、授权、缓存、内容编码等。
+
+以下是示例HTTP/1.0请求和响应的样子：
+
+```
+GET / HTTP/1.0
+Host: cs.fyi
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)
+Accept: */*
+```
+
+如您所见，除了请求外，客户还发送了其个人信息、所需的响应类型等。虽然在HTTP/0.9中，客户端永远无法发送此类信息，因为没有headers。
+
+对上述请求的示例响应可能如下所示
+
 
 ## 报文
 

@@ -10,7 +10,7 @@ export default function Home() {
   console.log(allTags);
 
   return (
-    <div className='max-w-5.5xl mx-auto px-4 py-12'>
+    <div className='max-w-7xl mx-auto px-6 py-12'>
       <div className='flex flex-wrap justify-center gap-3'>
         {allTags.map((tag) => (
           <NextLink href={`/tags/${tag}`} key={tag}>

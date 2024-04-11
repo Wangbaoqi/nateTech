@@ -1,7 +1,10 @@
 import { nextui, NextUIPluginConfig } from '@nextui-org/react';
 import type { Config } from 'tailwindcss';
 import defaultTheme from 'tailwindcss/defaultTheme';
+import colors from 'tailwindcss/colors';
+import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette';
 import { commonColors } from '@nextui-org/theme/colors';
+
 const nextUIConf: NextUIPluginConfig = {
   prefix: 'nant',
   // defaultTheme: 'dark', // has problem
@@ -291,6 +294,21 @@ const config: Config = {
     }
   },
   darkMode: 'class',
-  plugins: [nextui(nextUIConf), require('@tailwindcss/typography')]
+  plugins: [
+    nextui(nextUIConf),
+    require('@tailwindcss/typography'),
+    addVariablesForColors
+  ]
 };
 export default config;
+
+function addVariablesForColors({ addBase, theme }) {
+  let allColors = flattenColorPalette(theme('colors'));
+  let newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+  );
+
+  addBase({
+    ':root': newVars
+  });
+}

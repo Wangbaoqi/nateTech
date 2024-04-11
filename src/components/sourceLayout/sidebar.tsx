@@ -101,10 +101,12 @@ const SidebarItem = memo(function SidebarItem(props: {
   const { item, isActive, isCollapsed } = props;
   const Icon = item.icon;
   const { setSidebarExpanded } = useSourceSidebar();
+  const isChild = item?.items?.length;
   const cls = clsx(
-    'flex justify-between px-3 gap-[0.5rem] hover:bg-zinc-100 hover:dark:bg-zinc-900 hover:no-underline cursor-pointer py-unit-xs -outline-offset-1 lg:rounded-[8px] bg-transparent no-underline',
+    'flex justify-between px-3 gap-[0.5rem] hover:no-underline cursor-pointer py-unit-xs -outline-offset-1 lg:rounded-[8px] bg-transparent no-underline',
     {
-      'dark:bg-zinc-900 bg-zinc-100': isActive
+      'dark:bg-zinc-900 bg-zinc-100': isActive && !isChild,
+      'hover:bg-zinc-100 hover:dark:bg-zinc-900': !isChild
     }
   );
   const arrowClsx = clsx(

@@ -18,7 +18,7 @@ export default function Page({ params }: { params: { slug: string[] } }) {
   if (!post) notFound();
 
   return (
-    <main className='relative flex flex-[0_1_1250px] max-w-[1250px]'>
+    <main className='relative flex flex-[0_1_1210px] max-w-[1250px]'>
       <article className='relative flex-1 px-10 prose prose-neutral text-default-700 text-[15px]'>
         <MDXContent code={post.body.code} />
       </article>

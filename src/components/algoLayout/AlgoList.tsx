@@ -88,6 +88,11 @@ export function AlgoList({ slug }: IAlgoListProps) {
     new Set(INITIAL_VISIBLE_COLUMNS)
   );
 
+  const { isPending, error, data, isFetching } = useQuery({
+    queryKey: ['algoListType'],
+    queryFn: async () => fetch(`/api`)
+  });
+
   const typeLists = originList.filter((item) => item.tags?.includes(slug));
 
   const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>({

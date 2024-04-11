@@ -17,3 +17,4 @@ export * from './FormInput';
 export * from './BugPlay';
 export * from './Combine';
 export * from './CodeSquare';
+export * from './ArrowRight';
