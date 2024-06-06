@@ -22,7 +22,7 @@ interface IContext {
 
 export async function GET(request: Request, context: IContext) {
   try {
-    // const list = await fetchAlgoListByType('');
+    const list = await fetchAlgoListByType('');
 
     return Response.json({ data: [] });
   } catch (error) {

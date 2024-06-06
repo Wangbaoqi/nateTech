@@ -16,11 +16,13 @@ interface HomeCardProps {
 const TITLES_BY_TAG: {
   [key: string]: string;
 } = {
+  JavaScript:
+    'bg-clip-text text-transparent select-none bg-gradient-to-r from-yellow-600 to-yellow-500 dark:from-yellow-300 dark:to-yellow-100',
   React:
     'bg-clip-text text-transparent select-none bg-gradient-to-r from-sky-500 to-sky-500 dark:from-sky-500 dark:to-sky-200',
   Algo: 'bg-clip-text text-transparent select-none bg-gradient-to-r from-green-600 to-green-500 dark:from-green-300 dark:to-green-100',
   Structure:
-    'bg-clip-text text-transparent select-none bg-gradient-to-r from-yellow-600 to-yellow-500 dark:from-yellow-300 dark:to-yellow-100',
+    'bg-clip-text text-transparent select-none bg-gradient-to-r from-green-600 to-green-500 dark:from-green-300 dark:to-green-100',
   Browser:
     'bg-clip-text text-transparent select-none bg-gradient-to-r from-red-600 to-red-500 dark:from-red-300 dark:to-red-100',
   Network:
@@ -32,12 +34,12 @@ const TITLES_BY_TAG: {
 export const COLORS_BY_TAGS = {
   React: 'dark:bg-sky-300 bg-sky-600/50',
   Algo: 'dark:bg-green-300 bg-green-500/50',
-  Structure: 'dark:bg-yellow-300 bg-yellow-600/50',
+  JavaScript: 'dark:bg-yellow-300 bg-yellow-600/50',
   Browser: 'dark:bg-red-300 bg-red-600/50',
   Network: 'dark:bg-purple-300 bg-purple-600/50',
   Toolchain: 'dark:bg-cyan-300 bg-cyan-600/50',
-  MEDIUM: 'dark:bg-yellow-300 bg-yellow-600/50',
-  // this will never actually be used
+  Structure: 'dark:bg-green-300 bg-green-600/50',
+  // Structure will never actually be used
   EVENT: 'dark:bg-purple-300 bg-purple-600/50'
 } as const;
 

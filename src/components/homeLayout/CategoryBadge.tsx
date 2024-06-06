@@ -10,9 +10,9 @@ interface Props {
 const COLORS_BY_DIFFICULTY: {
   [key: string]: string;
 } = {
+  JavaScript: 'dark:bg-yellow-400 bg-yellow-700 text-white dark:text-black ',
   React: 'dark:bg-sky-400 bg-sky-700 text-white dark:text-black ',
-  Algo: 'dark:bg-green-400 bg-green-700 text-white dark:text-black ',
-  Structure: 'dark:bg-yellow-400 bg-yellow-700 text-white dark:text-black ',
+  Structure: 'dark:bg-green-400 bg-green-700 text-white dark:text-black ',
   Browser: 'dark:bg-red-400 bg-red-700 text-white dark:text-black ',
   Network: 'dark:bg-purple-400 bg-purple-700 text-white dark:text-black ',
   Toolchain: 'dark:bg-cyan-400 bg-cyan-700 text-white dark:text-black '

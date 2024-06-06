@@ -18,24 +18,14 @@ import {
   Chip,
   User,
   Pagination,
+  Spinner,
   SortDescriptor
 } from '@nextui-org/react';
 
-import { allPosts, allAlgos, type Algo, MDX } from 'contentlayer/generated';
-import { ChevronRightLinearIcon, SearchLinearIcon } from '@/components/icons';
-import * as Local from 'contentlayer/source-files';
+import { SearchLinearIcon } from '@/components/icons';
 import { compareAsc, format } from 'date-fns';
-import { useQuery } from '@tanstack/react-query';
-
-// interface AlgoType extends Algo {
-//   [key: string]:
-//     | string
-//     | number
-//     | string[]
-//     | MDX
-//     | Local.RawDocumentData
-//     | undefined;
-// }
+import { useAsyncList } from '@react-stately/data';
+import { fetchRepoContentByPath } from '@/lib/github';
 
 interface AlgoStatusType {
   [key: string]:
@@ -52,16 +42,6 @@ interface IAlgoListProps {
   slug: string;
 }
 
-const originList = allAlgos;
-
-// console.log(allAlgos[0], 'allAlgos');
-
-const statusOptions = [
-  { name: 'Easy', uid: 'easy' },
-  { name: 'Hard', uid: 'hard' },
-  { name: 'Medium', uid: 'medium' }
-];
-
 const statusColorMap: AlgoStatusType = {
   easy: 'success',
   hard: 'danger',
@@ -69,35 +49,57 @@ const statusColorMap: AlgoStatusType = {
 };
 
 const columns = [
-  { name: 'ID', uid: 'id', sortable: true },
+  // { name: 'ID', uid: 'id', sortable: true },
   { name: 'TITLE', uid: 'title' },
-  { name: 'DATE', uid: 'date', sortable: true },
-  { name: 'STATUS', uid: 'status' },
-  { name: 'LEETCODE', uid: 'leetCode' }
+  { name: 'GITHUB', uid: 'github' }
 ];
 
-const INITIAL_VISIBLE_COLUMNS = ['id', 'title', 'date', 'status', 'leetCode'];
+const INITIAL_VISIBLE_COLUMNS = ['id', 'title', 'github'];
 
 export function AlgoList({ slug }: IAlgoListProps) {
   const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [filterValue, setFilterValue] = useState('');
-  const [statusFilter, setStatusFilter] = useState('all');
-  const [selectedKeys, setSelectedKeys] = useState(new Set([]));
   const [visibleColumns, setVisibleColumns] = React.useState(
     new Set(INITIAL_VISIBLE_COLUMNS)
   );
 
-  const { isPending, error, data, isFetching } = useQuery({
-    queryKey: ['algoListType'],
-    queryFn: async () => fetch(`/api`)
-  });
+  const originLists = useAsyncList({
+    async load() {
+      const list = await fetchRepoContentByPath();
+      setIsLoading(false);
+      return {
+        items: Array.isArray(list) ? list : []
+      };
+    },
+    async sort({ items, sortDescriptor }) {
+      return {
+        items: items.sort((a, b) => {
+          let first = a[sortDescriptor?.column];
+          let second = b[sortDescriptor?.column];
+          if (
+            sortDescriptor?.column &&
+            first !== undefined &&
+            second !== undefined
+          ) {
+            let cmp =
+              (parseInt(first) || first) < (parseInt(second) || second)
+                ? -1
+                : 1;
 
-  const typeLists = originList.filter((item) => item.tags?.includes(slug));
+            if (sortDescriptor.direction === 'descending') {
+              cmp *= -1;
+            }
 
-  const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>({
-    column: 'id',
-    direction: 'ascending'
+            return cmp;
+          }
+
+          return 0;
+        })
+      };
+    }
   });
 
   const headerColumns = React.useMemo(() => {
@@ -109,18 +111,18 @@ export function AlgoList({ slug }: IAlgoListProps) {
   }, [visibleColumns]);
 
   const hasSearchFilter = Boolean(filterValue);
+
+  // 筛选过滤
   const filteredItems = useMemo(() => {
-    let filterList = [...typeLists];
+    let filterList = [...originLists.items];
 
     if (hasSearchFilter) {
       filterList = filterList.filter((user) =>
-        user.title.toLowerCase().includes(filterValue.toLowerCase())
+        user.name.toLowerCase().includes(filterValue.toLowerCase())
       );
     }
     return filterList;
-  }, [typeLists, hasSearchFilter, filterValue]);
-
-  const pages = Math.ceil(filteredItems.length / rowsPerPage);
+  }, [originLists, hasSearchFilter, filterValue]);
 
   const items = React.useMemo(() => {
     const start = (page - 1) * rowsPerPage;
@@ -129,15 +131,7 @@ export function AlgoList({ slug }: IAlgoListProps) {
     return filteredItems.slice(start, end);
   }, [page, filteredItems, rowsPerPage]);
 
-  const sortedItems = React.useMemo(() => {
-    return [...items].sort((a, b) => {
-      const first = sortDescriptor.column ? a[sortDescriptor.column] || 0 : 0;
-      const second = sortDescriptor.column ? b[sortDescriptor.column] || 0 : 1;
-      const cmp = first < second ? -1 : first > second ? 1 : 0;
-
-      return sortDescriptor.direction === 'descending' ? -cmp : cmp;
-    });
-  }, [items, sortDescriptor.column, sortDescriptor.direction]);
+  const pages = Math.ceil(filteredItems.length / rowsPerPage);
 
   const renderCell = React.useCallback((user: any, columnKey: string) => {
     const cellValue = user[columnKey];
@@ -146,21 +140,21 @@ export function AlgoList({ slug }: IAlgoListProps) {
       case 'title':
         return (
           <NextLink
-            href={user.url}
+            href={user.html_url}
             target='_blank'
             className='hover:text-default-500'
           >
-            {user.title}
+            {user.name}
           </NextLink>
         );
-      case 'leetCode':
+      case 'github':
         return (
-          <Link isExternal href={user.leetCode} showAnchorIcon>
-            LeetCode
+          <Link isExternal href={user.html_url} showAnchorIcon>
+            github
           </Link>
         );
       case 'date':
-        return <>{format(new Date(user.date), 'yyyy-MM-dd')}</>;
+        return <></>;
       case 'status':
         return (
           <Chip
@@ -226,9 +220,7 @@ export function AlgoList({ slug }: IAlgoListProps) {
           />
         </div>
         <div className='flex justify-between items-center'>
-          <span className='text-default-400 text-small'>
-            Total {typeLists.length}
-          </span>
+          <span className='text-default-400 text-small'>Total</span>
           <label className='flex items-center text-default-400 text-small'>
             Rows per page:
             <select
@@ -243,13 +235,7 @@ export function AlgoList({ slug }: IAlgoListProps) {
         </div>
       </div>
     );
-  }, [
-    filterValue,
-    onSearchChange,
-    typeLists.length,
-    onRowsPerPageChange,
-    onClear
-  ]);
+  }, [filterValue, onSearchChange, onRowsPerPageChange, onClear]);
 
   const bottomContent = useMemo(() => {
     return (
@@ -302,25 +288,20 @@ export function AlgoList({ slug }: IAlgoListProps) {
       classNames={{
         wrapper: 'bg-content1/30 '
       }}
-      sortDescriptor={sortDescriptor}
       topContent={topContent}
       topContentPlacement='outside'
-      onSortChange={setSortDescriptor}
     >
       <TableHeader columns={headerColumns}>
-        {(column) => (
-          <TableColumn
-            key={column.uid}
-            align={column.uid === 'leetCode' ? 'center' : 'start'}
-            allowsSorting={column.sortable}
-          >
-            {column.name}
-          </TableColumn>
-        )}
+        {(column) => <TableColumn key={column.uid}>{column.name}</TableColumn>}
       </TableHeader>
-      <TableBody emptyContent={'No problems found'} items={sortedItems}>
+      <TableBody
+        // emptyContent={'No problems found'}
+        items={items}
+        isLoading={isLoading}
+        loadingContent={<Spinner label='Loading...' />}
+      >
         {(item) => (
-          <TableRow key={item.id}>
+          <TableRow key={item?.sha}>
             {(columnKey: any) => (
               <TableCell>{renderCell(item, columnKey)}</TableCell>
             )}

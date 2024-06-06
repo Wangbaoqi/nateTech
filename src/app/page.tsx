@@ -12,6 +12,13 @@ export default function Home() {
       <div className='mt-10'>
         <Suspense fallback={'loading'}>
           <HomeCard
+            title='Posts for JavaScript'
+            tag='JavaScript'
+            redirectRoute='/tags/javascript'
+          />
+        </Suspense>
+        <Suspense fallback={'loading'}>
+          <HomeCard
             title='Posts for React'
             tag='React'
             redirectRoute='/tags/react'

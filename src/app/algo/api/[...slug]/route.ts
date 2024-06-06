@@ -1,6 +1,11 @@
 import fs from 'fs';
 
-import { fetchAlgoContentByType, fetchAlgoListByType } from '@/lib/github';
+import {
+  fetchUserInfo,
+  fetchAlgoListByType,
+  fetchUserRepos,
+  fetchRepoContentByPath
+} from '@/lib/github';
 
 interface IContext {
   params: {
@@ -11,11 +16,8 @@ interface IContext {
 export async function GET(request: Request, context: IContext) {
   const type = context.params.slug.join('');
 
-  console.log(type, 'type params');
+  const list = await fetchRepoContentByPath();
+  console.log(list, 'list');
 
-  const list = await fetchAlgoListByType(type);
-
-  console.log(list, 'api');
-
-  return Response.json({ data: list });
+  return Response.json({ list });
 }
