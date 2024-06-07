@@ -2,6 +2,9 @@ import { Octokit } from 'octokit';
 import { Endpoints, OctokitResponse } from '@octokit/types';
 import fs from 'fs-extra';
 
+export type TypeContentPath =
+  Endpoints['GET /repos/{owner}/{repo}/contents/{path}']['response']['data'];
+
 const octokit = new Octokit({
   auth: process.env.GITHUB_AUTH
 });
@@ -28,7 +31,7 @@ export const fetchUserRepos = async () => {
   }
 };
 
-export const fetchRepoContentByPath = async () => {
+export const fetchRepoContentByPath = async (type: string = '') => {
   // 定义要获取内容的仓库信息
   const owner = 'wangbaoqi';
   const repo = 'leetCode';
@@ -39,7 +42,7 @@ export const fetchRepoContentByPath = async () => {
     const rst = await octokit.rest.repos.getContent({
       owner,
       repo,
-      path
+      path: type
     });
 
     if (rst?.status === 200 && rst?.data) {

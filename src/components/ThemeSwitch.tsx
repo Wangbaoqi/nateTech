@@ -1,5 +1,4 @@
 'use client';
-
 import { useTheme } from 'next-themes';
 import { MoonFilledIcon, SunFilledIcon } from '@/components/icons';
 import { useSwitch, SwitchProps } from '@nextui-org/react';

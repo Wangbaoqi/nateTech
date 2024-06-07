@@ -1,9 +1,18 @@
-'use client';
-import { clsx } from '@nextui-org/shared-utils';
 import { NavBar, Footer } from '@/components/blogLayout';
-import { IconSparkles } from '@/components/icons';
 import { Suspense } from 'react';
 import { HomeCard } from '@/components/homeLayout/HomeCard';
+import { Metadata } from 'next/types';
+
+export function generateMetadata({
+  params
+}: {
+  params: { slug: string[] };
+}): Metadata {
+  return {
+    title: `home of nantTech`,
+    description: `posts of nateTech`
+  };
+}
 
 export default function Home() {
   return (

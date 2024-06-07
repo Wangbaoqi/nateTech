@@ -1,8 +1,5 @@
 'use client';
 import NextLink from 'next/link';
-import { useEffect, useState } from 'react';
-// import clsx from 'clsx';
-import { isAppleDevice } from '@react-aria/utils';
 import { clsx } from '@nextui-org/shared-utils';
 import {
   link,
@@ -12,9 +9,6 @@ import {
   NavbarContent,
   NavbarItem,
   NavbarMenuToggle,
-  NavbarMenu,
-  NavbarMenuItem,
-  Button,
   Kbd
 } from '@nextui-org/react';
 
@@ -22,7 +16,6 @@ import {
   GithubIcon,
   TwitterIcon,
   DiscordIcon,
-  SearchLinearIcon,
   NantIcon
 } from '@/components/icons';
 
@@ -30,7 +23,6 @@ import { ThemeSwitcher } from '@/components/ThemeSwitch';
 import { siteConfig } from '@/config/site';
 import { Search } from '@/components';
 import { usePathname } from 'next/navigation';
-import { useIsMounted } from '@/hooks/useIsMount';
 import { includes } from 'lodash';
 
 interface INavBar {
@@ -49,11 +41,7 @@ export const NavBar = ({ width = 'xl' }: INavBar) => {
   const handlePressNavbarItem = (name: string, url: string) => {};
 
   return (
-    <NextUINavbar
-      maxWidth={width}
-      position='sticky'
-      // className={`[&>header]:max-w-7xl`}
-    >
+    <NextUINavbar maxWidth={width} position='sticky'>
       <NavbarContent className='basis-1/5 sm:basis-full' justify='start'>
         <NavbarBrand as='li' className='gap-1 max-w-fit mr-4'>
           <NextLink href='/' className='flex items-center gap-1'>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { clsx } from '@nextui-org/shared-utils';
 import { MoreButton } from '../icons/MoreButton';
 import { Carousel } from './Carousel';
 import NextLink from 'next/link';

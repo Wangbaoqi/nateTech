@@ -12,6 +12,10 @@ const bodyClsx = clsx(
   'min-h-screen text-foreground font-wotfard text-[15px] bg-background scroll-smooth antialiased'
 );
 
+export const metadata = {
+  title: 'nateTech '
+};
+
 export default function RootLayout({
   children
 }: {

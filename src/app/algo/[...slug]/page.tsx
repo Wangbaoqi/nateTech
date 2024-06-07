@@ -1,10 +1,22 @@
 import NextLink from 'next/link';
+import type { Metadata } from 'next';
 import { ChevronRightLinearIcon } from '@/components/icons';
 import { Button } from '@nextui-org/react';
 import { clsx } from '@nextui-org/shared-utils';
 import { algoRoutes } from '@/config/algoConfig';
 import { AlgoList } from '@/components/algoLayout';
 import Image from 'next/image';
+
+export function generateMetadata({
+  params
+}: {
+  params: { slug: string[] };
+}): Metadata {
+  return {
+    title: `${params.slug?.join('|')} of algorithms - nateTech`,
+    description: `Algorithms of nateTech, ${params.slug?.join('|')}`
+  };
+}
 
 export default async function Page({ params }: { params: { slug: string[] } }) {
   const slug = params.slug?.join('');

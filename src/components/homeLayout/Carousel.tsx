@@ -1,3 +1,4 @@
+'use client';
 import React, { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { clsx } from '@nextui-org/shared-utils';
 import { ChevronRightLinearIcon } from '@/components/icons';
